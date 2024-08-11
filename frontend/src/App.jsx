@@ -27,7 +27,7 @@ function App() {
             }>
 
           </Route>
-            <Route path="stock" element={
+            <Route path="stock/:symbol" element={
               <ProtectedRoute>
                 <NavBar/>
                 <Stocks/>

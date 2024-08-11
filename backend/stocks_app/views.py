@@ -9,41 +9,83 @@ from rest_framework.permissions import IsAuthenticated
 from .serializers import WatchlistSerializer
 from .models import StockWatchlist
 from django.shortcuts import render, get_object_or_404
+from datetime import datetime
+from django.core.cache import cache
+import asyncio
+from aiohttp import ClientSession
 
 
 # Get the stock name and price
+
 
 class GetStock(APIView):
     permission_classes = [IsAuthenticated]
     
     def get(self, request, symbol):
-        stock_price = yf.Ticker(symbol).history(period='1d').Close
+        stock_price = yf.Ticker(symbol).history(period='1d').Close.iloc[-1] # Get the latest closing price
 
-        stock_name = yf.Ticker(symbol).info['longName']
+        stock_name = yf.Ticker(symbol).info['longName']  # Get the stock price name
+        recent_datas = yf.download(symbol, period="1d", interval='1m')
+        times = recent_datas.index
+        values = recent_datas['Close']
+
+        fiftyLow = yf.Ticker(symbol).info['fiftyTwoWeekLow']
+        fiftyHigh = yf.Ticker(symbol).info['fiftyTwoWeekHigh']
+        dayLow = yf.Ticker(symbol).info['dayLow']
+        dayHigh = yf.Ticker(symbol).info['dayHigh']
+        currency = yf.Ticker(symbol).info['currency']
+        summary = yf.Ticker(symbol).info['longBusinessSummary']
+
+        data = []
+        for time, value in zip(times,values):
+            formatted_time = time.strftime('%H:%M')
+            data.append({"time": formatted_time, "value": round(value,2)})
+        # print(data)
 
         response_data = {
             'name': stock_name,
-            'price': round(stock_price, 2)
+            'price': round(stock_price, 2),
+            'fiftyLow': fiftyLow,
+            'fiftyHigh': fiftyHigh,
+            'dayLow': dayLow,
+            'dayHigh': dayHigh,
+            'summary': summary,
+            'currency': currency,
+            'data': data,
         }
 
         return Response(response_data, status=HTTP_200_OK)
     
 
-# class Stocks(generics.ListCreateAPIView):
 
-#     serializer_class = WatchlistSerializer
+# class GetStock(APIView):
 #     permission_classes = [IsAuthenticated]
 
-#     def get_queryset(self):
-#         # print("hello")
-#         user = self.request.user
-#         return StockWatchlist.objects.filter(owner=user)
+#     def get(self, request, symbol):
+#         cache_key = f'stock_data_{symbol}' # Unique identifier key for each symbol
+#         data = cache.get(cache_key)  # try to get the data from the cache using the key
+        
+#         if data is None: # if data is not in the cache
+#             # fetch fresh data from the stock API
+#             stock_price = yf.Ticker(symbol).history(period='1d').Close.iloc[-1]
+#             stock_name = yf.Ticker(symbol).info.get('longName', 'Unknown')
+#             recent_datas = yf.download(symbol, period="1d", interval='5m')
+#             times = recent_datas.index
+#             values = recent_datas['Close']
+#             data = [{"time": time.strftime('%H:%M'), "value": round(value, 2)} for time, value in zip(times, values)]
+            
+#             #store the fresh data in the cache with the unique key
+#             cache.set(cache_key, {
+#                 'name': stock_name,
+#                 'price': round(stock_price, 2),
+#                 'data': data,
+#             }, timeout=30)  # Cache for 10 minutes for performance improvement
 
-#     def perform_create(self, serializer):
-#         # if serializer.is_valid():
-#         serializer.save(owner=self.request.user)
-#         # else:
-#         #     print(serializer.error)
+#         return Response(data, status=HTTP_200_OK)
+    
+
+
+
 
 class Watchlist(APIView):
     permission_classes = [IsAuthenticated]
@@ -82,6 +124,9 @@ class AWatchlist(APIView):
         curr_list = self.get_list(request, list_id)
         curr_list.delete()
         return Response(status=HTTP_204_NO_CONTENT)
+    
+
+# class GetDataFrames(APIView)
     
 
 

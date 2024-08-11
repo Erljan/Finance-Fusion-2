@@ -27,7 +27,6 @@ export const Search = ({setStockSymbol, stockSymbol, getStock}) => {
     {/* <button >Search</button> */}
   </form>
     
-    <Outlet />
     </>
   )
 }

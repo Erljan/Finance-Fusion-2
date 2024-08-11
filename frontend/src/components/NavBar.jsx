@@ -13,7 +13,7 @@ export function NavBar() {
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">Dashboard</Nav.Link>
             <Nav.Link as={Link} to="/stock">Stocks</Nav.Link>
-            <Nav.Link as={Link} to="/portfolio">Portfolio</Nav.Link>
+            <Nav.Link as={Link} to="/watchlist">Watchlist</Nav.Link>
 
           </Nav>
           <Nav>

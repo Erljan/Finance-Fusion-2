@@ -7,6 +7,7 @@ import { Stocks } from "./pages/Stocks"
 import { NavBar } from "./components/NavBar"
 import { NotFoundPage } from "./pages/NotFoundPage"
 import './styles/index.css'
+import { WatchlistPage } from "./pages/WatchlistPage"
 
 
 function Logout(){
@@ -15,6 +16,7 @@ function Logout(){
 }
 
 function App() {
+
 
   return (
     <>
@@ -33,6 +35,13 @@ function App() {
               <ProtectedRoute>
                 <NavBar/>
                 <Stocks/>
+
+              </ProtectedRoute>
+            }/>
+            <Route path="watchlist/" element={
+              <ProtectedRoute>
+                <NavBar/>
+                <WatchlistPage/>
 
               </ProtectedRoute>
             }/>

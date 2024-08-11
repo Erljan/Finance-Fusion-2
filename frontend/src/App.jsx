@@ -6,6 +6,8 @@ import { ProtectedRoute } from "./components/ProtectedRoute"
 import { Stocks } from "./pages/Stocks"
 import { NavBar } from "./components/NavBar"
 import { NotFoundPage } from "./pages/NotFoundPage"
+import './styles/index.css'
+
 
 function Logout(){
   localStorage.clear()
@@ -27,7 +29,7 @@ function App() {
             }>
 
           </Route>
-            <Route path="stock/:symbol" element={
+            <Route path="stock/" element={
               <ProtectedRoute>
                 <NavBar/>
                 <Stocks/>

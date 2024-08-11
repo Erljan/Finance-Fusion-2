@@ -9,7 +9,7 @@ import {
 
 export const Chart = ({data, width, height}) => {
   return (
-    <ResponsiveContainer width={width} aspect={3}>
+    <ResponsiveContainer width={width} aspect={2}>
     <AreaChart data={data}>
       <defs>
         <linearGradient id="chartColor" x1="0" y1="0" x2="0" y2="1">

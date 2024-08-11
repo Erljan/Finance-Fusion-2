@@ -1,26 +1,33 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
+// import { Stocks } from "../pages/Stocks"
 
 
-export const Search = () => {
-    const navigate = useNavigate()
-    const [symbol, setSymbol] = useState("")
+export const Search = ({setStockSymbol, stockSymbol, getStock}) => {
+    // const navigate = useNavigate()
+    // const [symbol, setSymbol] = useState("")
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        if(symbol){
-            navigate(`/stock/${symbol.toUpperCase()}`)
-        }
-    }
+    // const handleSubmit = () => {
+    //     // e.preventDefault()
+        
+    //     // if(symbol){
+    //     //     navigate(`/stock/${symbol.toUpperCase()}`)
+    //     // }
+
+    // }
 
   return (
-    <form action="" onSubmit={handleSubmit}>
+    <>
+    <form action="" onSubmit={getStock}>
     <input
       type="text"
-      value={symbol}
-      onChange={(e) => setSymbol(e.target.value.toUpperCase())}
+      value={stockSymbol}
+      onChange={(e) => setStockSymbol(e.target.value.toUpperCase())}
     />
     {/* <button >Search</button> */}
   </form>
+    
+    <Outlet />
+    </>
   )
 }

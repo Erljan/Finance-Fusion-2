@@ -2,13 +2,12 @@ import { useEffect, useState } from "react";
 import { api } from "../api";
 import { Chart } from "../components/Chart";
 import { Watchlist } from "../components/Watchlist";
-// import { Overview } from "../components/Overview";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 // import { Search } from "../components/Search";
 
 export const Stocks = () => {
-    const { symbol } = useParams()
-  const [stockSymbol, setStockSymbol] = useState(symbol || "");
+//   const { symbol } = useParams();
+  const [stockSymbol, setStockSymbol] = useState("");
   const [currPrice, setPrice] = useState(null);
   const [stockName, setStockName] = useState("");
 
@@ -16,33 +15,22 @@ export const Stocks = () => {
   const [watchlistPrices, setWatchlistPrices] = useState([]);
 
   const [dataChart, setDataChart] = useState([]);
-
   const [fiftyLow, setFiftyLow] = useState(null);
   const [fiftyHigh, setFiftyHigh] = useState(null);
   const [dayLow, setDayLow] = useState(null);
   const [dayHigh, setDayHigh] = useState(null);
-
   const [summary, setSummary] = useState("");
 
-  const navigate = useNavigate();
-
-  const getWatchlist = async () => {
-    const response = await api.get("api/stock/");
-    const data = response.data;
-
-    setWatchlist(data);
-  };
-
   useEffect(() => {
-    if(stockSymbol){
-        getStock(stockSymbol)
-    }
 
     getWatchlist();
 
     // console.log(watchlist)
     // console.log(watchlist.some(stock => stock.symbol === stockSymbol))
-  }, [stockSymbol]);
+  }, []);
+
+
+
 
   useEffect(() => {
     const throttledUpdateWatchlistPrices = throttle(
@@ -59,7 +47,10 @@ export const Stocks = () => {
     return () => clearInterval(interval);
   }, [watchlist]);
 
-  const getStock = async () => {
+
+
+  const getStock = async (e) => {
+    e.preventDefault()
 
     const stocks = await api.get(`api/stock/${stockSymbol}/`);
     const response = stocks.data;
@@ -74,7 +65,21 @@ export const Stocks = () => {
     setSummary(response.summary);
   };
 
-  const addToWatchlist = async () => {
+
+  
+
+  const getWatchlist = async () => {
+    const response = await api.get("api/stock/");
+    const data = response.data;
+
+    setWatchlist(data);
+  };
+
+
+  
+
+  const addToWatchlist = async (e) => {
+    e.preventDefault()
     if (stockSymbol && stockName) {
       try {
         const response = await api.post("api/stock/", {
@@ -84,13 +89,10 @@ export const Stocks = () => {
 
         console.log("Stock added to watchlist:", response.data);
 
-        // setWatchlist(prevList => [...prevList, response.data])
-
         setStockName("");
         setStockSymbol("");
         setPrice(null);
-
-        getWatchlist();
+        // getWatchlist();
       } catch (error) {
         console.error(
           "Error adding to watchlist",
@@ -102,10 +104,17 @@ export const Stocks = () => {
     }
   };
 
+
+
+
   const removeWatchlist = async (id) => {
     await api.delete(`api/stock/delete/${id}/`);
     getWatchlist();
   };
+
+
+
+
 
   const updateWatchlistPrices = async () => {
     if (watchlist.length === 0) return;
@@ -118,7 +127,10 @@ export const Stocks = () => {
         })
       );
 
-      // console.log("fetched prices:", prices)
+
+
+
+
 
       const newPrices = prices.reduce((acc, stock) => {
         acc[stock.symbol] = stock.price;
@@ -132,6 +144,9 @@ export const Stocks = () => {
     }
   };
 
+
+
+
   const throttle = (func, limit) => {
     let inThrottle;
     return function (...args) {
@@ -144,17 +159,20 @@ export const Stocks = () => {
     };
   };
 
+
+
+
   return (
     <>
       <div>
-        {/* <h1>Search stock</h1>
+        <h1>Search stock</h1>
         <form action="" onSubmit={getStock}>
           <input
             type="text"
             value={stockSymbol}
             onChange={(e) => setStockSymbol(e.target.value.toUpperCase())}
           />
-        </form> */}
+        </form>
 
         {/* ======CHART===== */}
         <Chart data={dataChart} width="100%" />
@@ -179,7 +197,9 @@ export const Stocks = () => {
                 Add to Watchlist
               </button>
             </div>
-          ) : navigate("/")}
+          ) : (
+            "Loading..."
+          )}
         </div>
 
         {/* ==========WATCHLIST========= */}
@@ -200,13 +220,6 @@ export const Stocks = () => {
     </>
   );
 };
-
-
-
-
-
-
-
 
 // import { useEffect, useState } from "react";
 // import { api } from "../api";

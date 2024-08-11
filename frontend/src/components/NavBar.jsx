@@ -19,7 +19,6 @@ export function NavBar() {
           <Nav>
 
           </Nav>
-          <Search />
           <Nav className="">
             <Nav.Link as={Link} to="/logout">Logout</Nav.Link>
           </Nav>

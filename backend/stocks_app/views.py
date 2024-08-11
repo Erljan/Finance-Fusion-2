@@ -58,7 +58,21 @@ class GetStock(APIView):
     
 
 
-# class GetStock(APIView):
+class GetStockPrices(APIView):
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request, symbol):
+        stock_price = yf.Ticker(symbol).history(period='1d').Close.iloc[-1] # Get the latest closing price
+
+        response_data = {
+            'price': round(stock_price, 2)
+        }
+
+        return Response(response_data, status=HTTP_200_OK)
+    
+
+
+# class GetStockPrices(APIView):
 #     permission_classes = [IsAuthenticated]
 
 #     def get(self, request, symbol):

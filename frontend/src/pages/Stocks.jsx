@@ -3,7 +3,7 @@ import { api } from "../api";
 import { Chart } from "../components/Chart";
 
 export const Stocks = () => {
-  const [stockSymbol, setStockSymbol] = useState("AAPL");
+  const [stockSymbol, setStockSymbol] = useState("");
   const [currPrice, setPrice] = useState(null);
   const [stockName, setStockName] = useState("");
 
@@ -123,6 +123,7 @@ export const Stocks = () => {
             type="text"
             value={stockSymbol}
             onChange={(e) => setStockSymbol(e.target.value.toUpperCase())}
+            placeholder="Search for stock..."
           />
         </form>
 

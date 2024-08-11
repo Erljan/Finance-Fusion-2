@@ -22,7 +22,7 @@ export const WatchlistPage = () => {
       }, [watchlist]);
 
 
-      
+
 
       useEffect(()=> {
         getWatchlist()
@@ -49,7 +49,7 @@ export const WatchlistPage = () => {
         try {
           const prices = await Promise.all(
             watchlist.map(async (stock) => {
-              const response = await api.get(`api/stock/${stock.symbol}/`);
+              const response = await api.get(`api/stock/prices/${stock.symbol}/`);
               return { symbol: stock.symbol, price: response.data.price };
             })
           );

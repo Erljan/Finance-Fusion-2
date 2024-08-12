@@ -17,10 +17,13 @@ export const Stocks = () => {
   const [dayHigh, setDayHigh] = useState(null);
   const [summary, setSummary] = useState("");
   const [currency, setCurrency] = useState("");
+  const [news, setNews] = useState([])
+  const [thumbnail, setThumbnail] = useState([])
 
   useEffect(() => {
     getStock();
     getWatchlist();
+    // console.log(news)
   }, []);
 
   const getWatchlist = async () => {
@@ -32,6 +35,8 @@ export const Stocks = () => {
 
   const getStock = async (e) => {
     if (e) e.preventDefault();
+
+    // const formData = new FormData(e.target)
 
     const symbol = stockSymbol;
     const stocks = await api.get(`api/stock/${symbol}/`);
@@ -46,9 +51,17 @@ export const Stocks = () => {
     setDayLow(response.dayLow);
     setSummary(response.summary);
     setCurrency(response.currency);
+    setNews(response.news)
 
-    // setStockSymbol("")
+    // if(news){
+    //   news.map((img) => setThumbnail(img.thumbnail.resolutions[0].url))
+    // }
+
+    setStockSymbol(symbol)
   };
+
+
+
 
   const addToWatchlist = async (e) => {
     e.preventDefault();
@@ -78,6 +91,9 @@ export const Stocks = () => {
     }
   };
 
+
+
+
   const removeWatchlist = async (stockSymbol) => {
     const stockToRemove = watchlist.find(
       (stock) => stock.symbol === stockSymbol
@@ -97,9 +113,15 @@ export const Stocks = () => {
     }
   };
 
+
+
+
   const isInWatchlist = watchlist.some(
     (stock) => stock.stock_name === stockName
   );
+
+
+
 
   return (
     <>
@@ -174,6 +196,28 @@ export const Stocks = () => {
 
         <div className="summary">
           <p>Summary: {summary}</p>
+        </div>
+
+        <div className="stock-news">
+          <h1>Latest News related to {stockName}</h1>
+          <div className="news-container">
+
+          {news.map((snews,idx) => (
+            <div key={idx} className="each-news">
+
+                <img src={snews.thumbnail} alt="" />
+                <hr />
+                <p><a href={snews.link} target="_blank">{snews.title}</a></p>
+              </div>
+            ))}
+          </div>
+{/* 
+          {thumbnail.map((img, idx) => (
+            <div key={idx}>
+
+              <img src={img}/>
+            </div>
+          ))} */}
         </div>
       </div>
     </>

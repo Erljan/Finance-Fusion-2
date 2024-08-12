@@ -10,7 +10,9 @@ from .serializers import WatchlistSerializer
 from .models import StockWatchlist
 from django.shortcuts import render, get_object_or_404
 from datetime import datetime
-from django.core.cache import cache
+import finnhub
+# from django.core.cache import cache
+
 
 
 # Get the stock name and price
@@ -40,6 +42,27 @@ class GetStock(APIView):
             data.append({"time": formatted_time, "value": round(value,2)})
         # print(data)
 
+
+        # finnhub_client = finnhub.Client(api_key="cqpejp9r01qr5jic95igcqpejp9r01qr5jic95j0")
+        # today = datetime.today().strftime('%Y-%m-%d')
+        # news = finnhub_client.company_news(symbol, _from=today, to=today)
+        news_sym = yf.Ticker(symbol)
+        latest_news = news_sym.news[:3]
+
+        news_with_thumbnails = []
+        for news_item in latest_news:
+            if 'thumbnail' in news_item and 'resolutions' in news_item['thumbnail']:
+                thumbnail_url = news_item['thumbnail']['resolutions'][1]['url']
+            else:
+                thumbnail_url = "https://media.istockphoto.com/id/943292690/photo/financial-and-technical-data-analysis-graph-showing-stock-market-trends.jpg?b=1&s=170x170&k=20&c=ffiVRDYyiyeaOkWTIZSlOVioi7ftx48WHkIfiYwAlZc="
+    
+            news_with_thumbnails.append({
+                'title': news_item.get('title'),
+                'publisher': news_item.get('publisher'),
+                'link': news_item.get('link'),
+                'thumbnail': thumbnail_url
+            })
+
         response_data = {
             'name': stock_name,
             'price': round(stock_price, 2),
@@ -50,6 +73,7 @@ class GetStock(APIView):
             'summary': summary,
             'currency': currency,
             'data': data,
+            'news': news_with_thumbnails,
         }
 
         return Response(response_data, status=HTTP_200_OK)
@@ -124,6 +148,9 @@ class Watchlist(APIView):
         else:
             print(ser_stock.errors)
             return Response(ser_stock.errors, status=HTTP_400_BAD_REQUEST)
+
+
+
 
 class AWatchlist(APIView):
     permission_classes = [IsAuthenticated]

@@ -12,8 +12,8 @@ export function NavBar() {
           <Navbar.Brand as={Link} to="/"><img className='logo' src="src/images/logo1.png" alt="" /></Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link as={Link} to="/">Dashboard</Nav.Link>
+            <Nav.Link as={Link} to="/budget">Budget</Nav.Link>
             <Nav.Link as={Link} to="/stock">Stocks</Nav.Link>
-            <Nav.Link as={Link} to="/watchlist">Watchlist</Nav.Link>
 
           </Nav>
           <Nav>

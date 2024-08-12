@@ -7,7 +7,8 @@ import { Stocks } from "./pages/Stocks"
 import { NavBar } from "./components/NavBar"
 import { NotFoundPage } from "./pages/NotFoundPage"
 import './styles/index.css'
-import { WatchlistPage } from "./pages/WatchlistPage"
+// import { WatchlistPage } from "./pages/WatchlistPage"
+import { Budget } from "./pages/Budget"
 
 
 function Logout(){
@@ -38,10 +39,10 @@ function App() {
 
               </ProtectedRoute>
             }/>
-            <Route path="watchlist/" element={
+            <Route path="budget/" element={
               <ProtectedRoute>
                 <NavBar/>
-                <WatchlistPage/>
+                <Budget/>
 
               </ProtectedRoute>
             }/>

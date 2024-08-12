@@ -19,7 +19,8 @@
     display: grid;
     grid-template-areas: 
         'main right right right'
-        'footer footer footer footer';
+        'footer footer footer footer'
+        'news news news news';
     padding: 5px 20px;
 }
 
@@ -155,7 +156,7 @@ span.span-curr{
     height: 7%;
     background-color: transparent;
     color: #1745fb;
-    border-color: #1745fb;
+    border: none;
     border-radius: 5px;
     box-shadow: 1px 1px 10px 2px #1745fb;
 
@@ -178,9 +179,9 @@ span.span-curr{
     height: 7%;
     background-color: transparent;
     color: #fb1717;
-    border-color: #fb1717;
     border-radius: 5px;
     box-shadow: 1px 1px 10px 2px #fb1717;
+    border: none;
 
 }
 
@@ -189,4 +190,99 @@ span.span-curr{
     background-color: #fb1717 ;
     color: white;
     border: noen;
+}
+
+.stock-news{
+    grid-area: news;
+    margin: 20px 10px;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 2px #515151;
+    background-color: #0d0220;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    /* fle */
+    /* width: 100%; */
+    /* height: 100%; */
+    text-align: center;
+    /* border: 1px solid white; */
+
+}
+
+.news-container{
+    /* border: 1px solid white; */
+    margin: 10px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.each-news{
+    margin: 10px;
+    margin-top: 0;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 2px #515151;
+    background-color: #0d0220;
+    height: 100%;
+    width: 25%;
+}
+
+
+.watchlist{
+    /* border: 1px solid white; */
+    width: 40%;
+    height: 350px;
+    overflow:auto ;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 1px 1px 10px 2px #515151;
+    background-color: #0d0220;
+    margin: 20px;
+    border-radius: 5px;
+    /* scroll-behavior:smooth; */
+    scrollbar-width: thin; 
+    scrollbar-color: #888 #1e1e1e;
+
+}
+
+
+
+.each-watchlist{
+    /* border: 1px solid white; */
+    text-align: left;
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    box-shadow: inset 1px 1px 5px 1px #515151;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #10002b;
+    cursor: pointer;
+}
+
+.remove-btn{
+    background-color: transparent;
+    color: #fb1717;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 2px #fb1717;
+    border: none;
+}
+
+.remove-btn:hover{
+    /* box-shadow: 1px 1px 10px 2px #fb1717; */
+    background-color: #fb1717 ;
+    color: white;
+    border: noen;
+}
+
+.watchlist-price{
+    color: #74a6f0;
+    font-size: x-large;
 }

@@ -3,12 +3,12 @@ import { api } from "../api";
 import { Chart } from "../components/Chart";
 
 export const Stocks = () => {
-  const [stockSymbol, setStockSymbol] = useState("");
+  const [stockSymbol, setStockSymbol] = useState("AAPL");
+  // const [symbol, setSymbol] = useState("")
   const [currPrice, setPrice] = useState(null);
   const [stockName, setStockName] = useState("");
 
   const [watchlist, setWatchlist] = useState([]);
-
 
   const [dataChart, setDataChart] = useState([]);
   const [fiftyLow, setFiftyLow] = useState(null);
@@ -16,14 +16,12 @@ export const Stocks = () => {
   const [dayLow, setDayLow] = useState(null);
   const [dayHigh, setDayHigh] = useState(null);
   const [summary, setSummary] = useState("");
+  const [currency, setCurrency] = useState("");
 
   useEffect(() => {
-    getStock()
-    getWatchlist()
-
+    getStock();
+    getWatchlist();
   }, []);
-
-
 
   const getWatchlist = async () => {
     const response = await api.get("api/stock/");
@@ -32,14 +30,10 @@ export const Stocks = () => {
     setWatchlist(data);
   };
 
-
-
-
-
   const getStock = async (e) => {
-    if(e) e.preventDefault();
+    if (e) e.preventDefault();
 
-    const symbol = stockSymbol || "AAPL"
+    const symbol = stockSymbol;
     const stocks = await api.get(`api/stock/${symbol}/`);
     const response = stocks.data;
 
@@ -51,18 +45,16 @@ export const Stocks = () => {
     setDayHigh(response.dayHigh);
     setDayLow(response.dayLow);
     setSummary(response.summary);
+    setCurrency(response.currency);
+
+    // setStockSymbol("")
   };
 
-
-
-
-
-
-
   const addToWatchlist = async (e) => {
-    e.preventDefault()
-    if (stockSymbol && stockName) {
+    e.preventDefault();
+    if (currPrice && stockName) {
       try {
+        
         const response = await api.post("api/stock/", {
           stock_name: stockName,
           symbol: stockSymbol,
@@ -70,7 +62,7 @@ export const Stocks = () => {
 
         console.log("Stock added to watchlist:", response.data);
 
-        setWatchlist((prevWatchlist) => [...prevWatchlist, response.data])
+        setWatchlist((prevWatchlist) => [...prevWatchlist, response.data]);
         // setStockName("");
         // setStockSymbol("");
         // setPrice(null);
@@ -86,72 +78,104 @@ export const Stocks = () => {
     }
   };
 
-
-
-
-
   const removeWatchlist = async (stockSymbol) => {
-    const stockToRemove = watchlist.find((stock) => stock.symbol === stockSymbol)
-    if(stockToRemove){
-        try {
-            await api.delete(`api/stock/delete/${stockToRemove.id}/`);
-            setWatchlist(watchlist.filter((stock) => stock.id !== stockToRemove.id))
-            
-        } catch (error) {
-            console.error(
-                "Error removing from watchlist",
-                error.response ? error.response.data : error.message
-              );
-        }
+    const stockToRemove = watchlist.find(
+      (stock) => stock.symbol === stockSymbol
+    );
+    if (stockToRemove) {
+      try {
+        await api.delete(`api/stock/delete/${stockToRemove.id}/`);
+        setWatchlist(
+          watchlist.filter((stock) => stock.id !== stockToRemove.id)
+        );
+      } catch (error) {
+        console.error(
+          "Error removing from watchlist",
+          error.response ? error.response.data : error.message
+        );
+      }
     }
-    // getWatchlist();
   };
 
-
-  const isInWatchlist = watchlist.some((stock) => stock.stock_name === stockName)
-
-
-
-
+  const isInWatchlist = watchlist.some(
+    (stock) => stock.stock_name === stockName
+  );
 
   return (
     <>
-      <div>
-        <h1>Search stock</h1>
-        <form action="" onSubmit={getStock}>
-          <input
-            type="text"
-            value={stockSymbol}
-            onChange={(e) => setStockSymbol(e.target.value.toUpperCase())}
-            placeholder="Search for stock..."
-          />
-        </form>
+      <div className="stocks-container">
+        <div className="stock-search-details">
+          {/* ==========Search========== */}
+          <div className="search-container">
+            <form action="" onSubmit={getStock} className="search-form">
+              <input
+                type="text"
+                value={stockSymbol}
+                className="search-input"
+                onChange={(e) => setStockSymbol(e.target.value.toUpperCase())}
+                placeholder="Search for stock..."
+              />
+              <input
+                type="submit"
+                value="Search"
+                id=""
+                className="search-btn"
+              />
+            </form>
+          </div>
 
-        {/* ======CHART===== */}
-        <Chart data={dataChart} width="100%" />
 
-        {/* ==========Overview/Details========== */}
-        <div>
-          {currPrice ? (
-            <div>
-              <h3>{stockName}</h3>
-              <p>Price: {currPrice}</p>
-              <p>52 Wk High: {fiftyHigh}</p>
-              <p>52 Wk Low: {fiftyLow}</p>
-              <p>Today's High: {dayHigh}</p>
-              <p>Today's Low: {dayLow}</p>
-              <p>Summary: {summary}</p>
+          {/* ==========Overview/Details========== */}
+          <div className="stock-details">
+            {currPrice ? (
+              <div>
+                <h3 className="stock-name">{stockName}</h3>
+                <p className="stock-price">
+                  {currPrice} <span className="span-curr">{currency}</span>
+                </p>
+                <hr />
+                <p className="detail-tags">52 Wk High: {fiftyHigh}</p>
+                <hr />
+                <p className="detail-tags">52 Wk Low: {fiftyLow}</p>
+                <hr />
+                <p className="detail-tags">Today's High: {dayHigh}</p>
+                <hr />
+                <p className="detail-tags">Today's Low: {dayLow}</p>
+                <hr />
+                <p className="detail-tags">Currency: {currency}</p>
+                <hr />
 
-              {isInWatchlist ? <button onClick={() => removeWatchlist(stockSymbol)}>Remove from watchlist</button> : <button onClick={addToWatchlist}>Add to Watchlist</button>}
-
-            </div>
-          ) : (
-            "Loading..."
-          )}
+                {isInWatchlist ? (
+                  <button
+                    onClick={() => removeWatchlist(stockSymbol)}
+                    className="remove-watchlist-btn"
+                  >
+                    Remove from watchlist
+                  </button>
+                ) : (
+                  <button onClick={addToWatchlist} className="add-btn">
+                    Add to Watchlist
+                  </button>
+                )}
+              </div>
+            ) : (
+              <div>Loading...</div>
+              // "Loading..."
+            )}
+          </div>
         </div>
 
+
+
+        {/* ======CHART===== */}
+        <div className="stockpage-chart">
+          <Chart data={dataChart} width="100%" height={1.5} />
+        </div>
+
+        <div className="summary">
+          <p>Summary: {summary}</p>
+        </div>
       </div>
     </>
   );
 };
-

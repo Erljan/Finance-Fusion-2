@@ -4,6 +4,8 @@ export const Home = () => {
   // const watchlist = useContext()
 
   return (
-    <div>Home</div>
+    <div>
+      home
+    </div>
   )
 }

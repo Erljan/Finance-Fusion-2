@@ -11,8 +11,6 @@ from .models import StockWatchlist
 from django.shortcuts import render, get_object_or_404
 from datetime import datetime
 from django.core.cache import cache
-import asyncio
-from aiohttp import ClientSession
 
 
 # Get the stock name and price

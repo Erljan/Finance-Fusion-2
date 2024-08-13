@@ -61,3 +61,4 @@ python manage.py startapp stock_app
 
 ### Step 6:
 - Create the budget page
+- Do the backend for django

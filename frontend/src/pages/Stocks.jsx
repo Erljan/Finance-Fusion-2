@@ -18,12 +18,10 @@ export const Stocks = () => {
   const [summary, setSummary] = useState("");
   const [currency, setCurrency] = useState("");
   const [news, setNews] = useState([])
-  const [thumbnail, setThumbnail] = useState([])
 
   useEffect(() => {
     getStock();
     getWatchlist();
-    // console.log(news)
   }, []);
 
   const getWatchlist = async () => {
@@ -52,7 +50,6 @@ export const Stocks = () => {
     setSummary(response.summary);
     setCurrency(response.currency);
     setNews(response.news)
-
     // if(news){
     //   news.map((img) => setThumbnail(img.thumbnail.resolutions[0].url))
     // }
@@ -199,8 +196,12 @@ export const Stocks = () => {
         </div>
 
         <div className="stock-news">
-          <h1>Latest News related to {stockName}</h1>
+          {
+            news ? <h1>Latest News related to {stockName}</h1> : <h1>No news</h1>
+          }
+
           <div className="news-container">
+
 
           {news.map((snews,idx) => (
             <div key={idx} className="each-news">
@@ -211,13 +212,6 @@ export const Stocks = () => {
               </div>
             ))}
           </div>
-{/* 
-          {thumbnail.map((img, idx) => (
-            <div key={idx}>
-
-              <img src={img}/>
-            </div>
-          ))} */}
         </div>
       </div>
     </>

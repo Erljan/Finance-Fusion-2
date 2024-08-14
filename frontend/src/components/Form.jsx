@@ -32,12 +32,12 @@ export const Form = ({ route, method }) => {
 
   return (
     <>
-        <form action="" onSubmit={handleSubmit}>
+        <form action="" onSubmit={handleSubmit} className="forms-login-register">
             <h1>{methodName}</h1>
-            <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
-            <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
+            <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" className="input-forms"/>
+            <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="input-forms"/>
 
-            <button>{methodName}</button>
+            <button className="login-btn">{methodName}</button>
         </form>
     </>
   )

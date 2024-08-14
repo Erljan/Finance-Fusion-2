@@ -80,9 +80,12 @@ class UpdateTransaction(generics.UpdateAPIView):
             raise ValueError("Budget not found")
     
 
-class AddBudget(generics.CreateAPIView):
+class AddBudget(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
     serializer_class = BudgetSerializer
+
+    def get_queryset(self):
+        return Budget.objects.filter(owner=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

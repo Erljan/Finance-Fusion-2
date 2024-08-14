@@ -11,4 +11,8 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view()),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include('stocks_app.urls')),
+    path('api/', include('budget_app.urls')),
+
 ]
+
+# {"transac_name":"Netflix", "category":"Entertainment", "amount":20}

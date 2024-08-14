@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     'stocks_app',
     'user_app',
+    'budget_app',
     'rest_framework',
     'corsheaders',
 ]

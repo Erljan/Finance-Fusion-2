@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from rest_framework.decorators import api_view
+from django.shortcuts import render, get_object_or_404
+# from rest_framework.decorators import api_view
 import yfinance as yf
 from rest_framework.views import APIView
 # from rest_framework import generics
@@ -8,7 +8,6 @@ from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_400_BAD_RE
 from rest_framework.permissions import IsAuthenticated
 from .serializers import WatchlistSerializer
 from .models import StockWatchlist
-from django.shortcuts import render, get_object_or_404
 from datetime import datetime
 import finnhub
 # from django.core.cache import cache

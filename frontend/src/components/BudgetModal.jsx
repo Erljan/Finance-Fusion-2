@@ -11,7 +11,7 @@ export const Modal = ({ isOpen, onClose, onSubmit, value, onChange }) => {
               type="number"
               value={value}
               onChange={onChange}
-              placeholder="Enter new budget"
+              placeholder="Enter new "
               min="0" // Ensure non-negative values
             />
             <button type="submit">Submit</button>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { api } from "../api";
 import { Modal } from "../components/BudgetModal";
+import { TransacModal } from "../components/TransactionModal";
 
 
 export const Budget = () => {
@@ -15,16 +16,19 @@ export const Budget = () => {
   const [addTransacName, setTransacName] = useState("")
   const [category, setCategory] = useState("")
   const [amount, setAmount] = useState(0)
-  
-  const [newAddTransacName, setNewTransacName] = useState("")
-  const [newCategory, setNewCategory] = useState("")
-  const [newAmount, setNewAmount] = useState(0)
+
+  const [editTransacName, setEditTransacName] = useState("");
+  const [editCategory, setEditCategory] = useState("");
+  const [editAmount, setEditAmount] = useState(0);
+  const [isTransacModalOpen, setIsTransacModalOpen] = useState(false);
+  const [selectedTransactionId, setSelectedTransactionId] = useState(null);
+
 
 
   useEffect(()=>{
     fetchTransac()
     getBudget()
-
+    // console.log(isTransacModalOpen)
   },[])
 
 
@@ -68,11 +72,14 @@ export const Budget = () => {
     }
   }
 
-  const updateTransaction = async(e) => {
-    e.preventDefault(`budget/<int:pk>/update/transaction/`)
+  const updateTransaction = async() => {
+    // const capitalize = editTransacName.capitalize()
 
     try {
-      await api.put()
+      await api.put(`api/budget/${selectedTransactionId}/update/transaction/`, { transac_name: editTransacName, category: editCategory, amount: editAmount })
+      fetchTransac()
+      getBudget()
+      setIsTransacModalOpen(false)
     } catch (error) {
       console.log(error)
       
@@ -84,7 +91,7 @@ export const Budget = () => {
       const response = await api.get("api/budget/")
       setBudget(response.data[0].budgetAmt)
       setBudgetId(response.data[0].id)
-
+      setIsModalOpen(false)
     } catch (error) {
       console.log(error)
       
@@ -113,7 +120,6 @@ export const Budget = () => {
       await api.put(`api/budget/${budgetId}/`, {budgetAmt: upBudget})
       // setBudget(response.data[0].budgetAmt)
       setBudget(upBudget)
-
       getBudget()
     } catch (error) {
       console.log(error)
@@ -131,6 +137,15 @@ export const Budget = () => {
       setUpBudget(budget)
       setIsModalOpen(!isModalOpen)
     }
+  }
+
+
+  const handleTransacModal = (transac) => {
+    setIsTransacModalOpen(true)
+    setEditTransacName(transac.transac_name)
+    setEditCategory(transac.category)
+    setEditAmount(transac.amount)
+    setSelectedTransactionId(transac.id)
   }
 
   return (
@@ -171,8 +186,34 @@ export const Budget = () => {
 
           <p >{transac.amount} - {transac.transac_name} - {transac.category} - {transac.created}</p>
           <button onClick={() => delTransaction(transac.id)}>Delete</button>
+          <button onClick={() => handleTransacModal(transac)}>Update</button>
         </div>
       ))}
+
+      {/* <TransacModal 
+        isOpen={isTransacModalOpen}
+        onClose={()=> setIsTransacModalOpen(false)}
+        onSubmit={updateTransaction}
+        transacName={editTransacName}
+        category={editCategory}
+        amount={editAmount}
+        onTransacNameChange={(e) => setEditTransacName((e.target.value))}
+        onCategoryChange={(e) => setEditCategory(e.target.value)}
+        onAmountChange={(e) => setEditAmount(e.target.value)}
+      /> */}
+      {isTransacModalOpen && (
+        <TransacModal 
+          isOpen={isTransacModalOpen}
+          onClose={() => setIsTransacModalOpen(false)}
+          onSubmit={updateTransaction}
+          transacName={editTransacName}
+          category={editCategory}
+          amount={editAmount}
+          onTransacNameChange={(e) => setEditTransacName(e.target.value)}
+          onCategoryChange={(e) => setEditCategory(e.target.value)}
+          onAmountChange={(e) => setEditAmount(e.target.value)}
+        />
+      )}
     </div>
   )
 }

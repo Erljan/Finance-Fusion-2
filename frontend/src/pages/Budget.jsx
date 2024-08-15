@@ -23,6 +23,7 @@ export const Budget = () => {
   const [isTransacModalOpen, setIsTransacModalOpen] = useState(false);
   const [selectedTransactionId, setSelectedTransactionId] = useState(null);
 
+  const categories = ["Food", "Transport", "Entertainment", "Utilities", "Clothing", "Housing", "Other"]
 
 
   useEffect(()=>{
@@ -72,8 +73,8 @@ export const Budget = () => {
     }
   }
 
-  const updateTransaction = async() => {
-    // const capitalize = editTransacName.capitalize()
+  const updateTransaction = async(e) => {
+    e.preventDefault()
 
     try {
       await api.put(`api/budget/${selectedTransactionId}/update/transaction/`, { transac_name: editTransacName, category: editCategory, amount: editAmount })
@@ -172,7 +173,12 @@ export const Budget = () => {
       <h3>Add Transaction</h3>
       <form action="" onSubmit={addTransaction}>
         <input type="text" value={addTransacName} onChange={(e)=> setTransacName(e.target.value)} placeholder="Title"/>
-        <input type="text" value={category} onChange={(e)=> setCategory(e.target.value)} placeholder="Category"/>
+        {/* <input type="text" value={category} onChange={(e)=> setCategory(e.target.value)} placeholder="Category"/> */}
+        <select name="" id="">
+          {categories.map((cat,idx) => (
+            <option key={idx} value={cat}>{cat}</option>
+          ))}
+        </select>
         <input type="number" value={amount} onChange={(e)=> setAmount(e.target.value)}/>
         <button type="submit">Submit</button>
       </form>
@@ -186,7 +192,7 @@ export const Budget = () => {
 
           <p >{transac.amount} - {transac.transac_name} - {transac.category} - {transac.created}</p>
           <button onClick={() => delTransaction(transac.id)}>Delete</button>
-          <button onClick={() => handleTransacModal(transac)}>Update</button>
+          <button onClick={() => handleTransacModal(transac)}>Edit</button>
         </div>
       ))}
 

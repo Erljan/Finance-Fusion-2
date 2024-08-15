@@ -37,7 +37,9 @@ class DeleteTransaction(generics.DestroyAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return Transaction.objects.filter(owner=user)
+        transaction = Transaction.objects.filter(owner=user)
+        # print(f"User: {user}, Transaction: {transaction}")
+        return transaction
     
 
     def perform_destroy(self, instance):

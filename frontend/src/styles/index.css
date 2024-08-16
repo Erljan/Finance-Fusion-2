@@ -367,3 +367,116 @@ span.span-curr{
     color: rgb(2, 27, 152);
     font-weight: 500;
 }
+
+
+.budget-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* height: 100vh; */
+    padding: 20px;
+}
+
+.transaction-container{
+    height: 750px;
+    box-shadow: 1px 1px 10px 1px #515151;
+    background-color: #0d0220;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 20px;
+    /* overflow: auto;
+    scrollbar-width: thin; 
+    scrollbar-color: #888 #1e1e1e; */
+
+}
+
+
+.budget-chart{
+    height: 400px;
+    box-shadow: 1px 1px 10px 1px #515151;
+    background-color: #0d0220;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 20px;
+    color: #1745fb;
+    text-align: center;
+}
+
+
+.transac-head{
+    /* border: 1px solid white; */
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #10002b;
+    border-radius: 5px;
+    box-shadow: inset 1px 1px 10px 1px #a083ae;
+
+}
+
+.transac-head button{
+    margin: 15px;
+    background-color: transparent;
+    color: #3b7095;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 2px #3b7095;
+}
+
+.transac-head button:hover{
+    /* box-shadow: 1px 1px 10px 2px #1745fb; */
+    background-color: #3b7095 ;
+    color: white;
+    border: none;
+}
+
+
+.transac-list{
+    /* border: 1px solid white; */
+    padding: 20px;
+    height: 450px;
+    overflow: auto;
+    scrollbar-width: thin; 
+    scrollbar-color: #888 #1e1e1e;
+    background-color: #10002b;
+    box-shadow: inset 1px 1px 10px 1px #a083ae;
+    border-radius: 5px;
+}
+
+
+.add-transac{
+    /* border: 1px solid white; */
+    padding: 20px;
+    text-align: center;
+
+}
+
+.add-transac button{
+    height: 30px;
+    width: 80px;
+    margin: 15px;
+    background-color: transparent;
+    color:white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 2px #c8c7c8;
+}
+
+.add-transac button:hover{
+    background-color: white;
+    color: black;
+}
+
+.input-transac{
+    margin: 0 5px;
+    outline: none;
+    border: none;
+    height: 30px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.input-transac.amount{
+    width: 90px;
+}

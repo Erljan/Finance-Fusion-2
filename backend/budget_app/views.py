@@ -15,7 +15,7 @@ class AddOrGetTransactions(generics.ListCreateAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        return Transaction.objects.filter(owner=user)
+        return Transaction.objects.filter(owner=user).order_by('-created')
 
     def perform_create(self, serializer):
         transaction = serializer.save(owner=self.request.user)

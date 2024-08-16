@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { api } from "../api";
 import { Modal } from "../components/BudgetModal";
 import { TransacModal } from "../components/TransactionModal";
-// import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { BudgetChart } from "../components/BudgetChart";
 
 export const Budget = () => {
@@ -24,7 +23,7 @@ export const Budget = () => {
   const [isTransacModalOpen, setIsTransacModalOpen] = useState(false);
   const [selectedTransactionId, setSelectedTransactionId] = useState(null);
 
-  // const categories = ["Food", "Transport", "Entertainment", "Utilities", "Clothing", "Housing", "Other"]
+  const categories = ["Food", "Transport", "Entertainment", "Utilities", "Clothing", "Housing", "Other"]
 
   useEffect(() => {
     fetchTransac();
@@ -146,87 +145,106 @@ export const Budget = () => {
   };
 
   return (
-    <div>
+    <div className="budget-container">
       <div className="transaction-container">
-        <h1>You have ${budget}</h1>
+        {/* ========Add/edit transaction========= */}
+        <div className="transac-head">
+          <h1>You have ${budget}</h1>
 
-        <button onClick={handleOpenModal}>
-          {budget === 0 ? "Add Budget" : "Edit Budget"}
-        </button>
+          <button onClick={handleOpenModal}>
+            {budget === 0 ? "Add Budget" : "Edit Budget"}
+          </button>
 
-        {/* =========Modal for add/edit budget======== */}
-        <Modal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          onSubmit={budget === 0 ? addBudget : updateBudget}
-          value={budget === 0 ? newBudget : upBudget}
-          onChange={(e) =>
-            budget === 0
-              ? setNewBudget(e.target.value)
-              : setUpBudget(e.target.value)
-          }
-          title={modalTitle}
-        />
+          {/* =========Modal for add/edit budget======== */}
+          <Modal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            onSubmit={budget === 0 ? addBudget : updateBudget}
+            value={budget === 0 ? newBudget : upBudget}
+            onChange={(e) =>
+              budget === 0
+                ? setNewBudget(e.target.value)
+                : setUpBudget(e.target.value)
+            }
+            title={modalTitle}
+          />
+        </div>
 
-        <div>
+        {/* ======Add transaction====== */}
+        <div className="add-transac">
           <h3>Add Transaction</h3>
-          <form action="" onSubmit={addTransaction}>
+          <form action="" onSubmit={(e) => {
+                e.preventDefault()
+                if(amount > budget){
+                  alert("You don't have enough funds")
+                } else{
+                  addTransaction(e)
+                }}} className="transac-form">
             <input
               type="text"
               value={addTransacName}
               onChange={(e) => setTransacName(e.target.value)}
               placeholder="Title"
+              className="input-transac"
             />
-            <input
+            {/* <input
               type="text"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               placeholder="Category"
-            />
-            {/* <select name="" id="">
+              className="input-transac"
+            /> */}
+            <select value={category} onChange={(e) => setCategory(e.target.value)} className="input-transac">
+              <option value="" disabled>Select Category</option>
             {categories.map((cat,idx) => (
-              <option key={idx} value={category}>{cat}</option>
+              <option key={idx} value={cat}>{cat}</option>
             ))}
-          </select> */}
+          </select>
             <input
               type="number"
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
+              className="input-transac amount"
             />
             <button type="submit">Submit</button>
           </form>
         </div>
 
-        {transactions.map((transac, idx) => (
-          <div key={idx}>
-            <p>
-              {transac.amount} - {transac.transac_name} - {transac.category} -{" "}
-              {transac.created}
-            </p>
-            <button onClick={() => delTransaction(transac.id)}>Delete</button>
-            <button onClick={() => handleTransacModal(transac)}>Edit</button>
-          </div>
-        ))}
+        {/* =======List of transactions======== */}
+        <div className="transac-list">
+          {transactions.map((transac, idx) => (
+            <div key={idx}>
+              <p>
+                {transac.amount} - {transac.transac_name} - {transac.category} -{" "}
+                {transac.created}
+              </p>
+              <button onClick={() => delTransaction(transac.id)}>Delete</button>
+              <button onClick={() => handleTransacModal(transac)}>Edit</button>
+              <hr />
+            </div>
+          ))}
 
-        {isTransacModalOpen && (
-          <TransacModal
-            isOpen={isTransacModalOpen}
-            onClose={() => setIsTransacModalOpen(false)}
-            onSubmit={updateTransaction}
-            transacName={editTransacName}
-            category={editCategory}
-            amount={editAmount}
-            onTransacNameChange={(e) => setEditTransacName(e.target.value)}
-            onCategoryChange={(e) => setEditCategory(e.target.value)}
-            onAmountChange={(e) => setEditAmount(e.target.value)}
-          />
-        )}
+          {isTransacModalOpen && (
+            <TransacModal
+              isOpen={isTransacModalOpen}
+              onClose={() => setIsTransacModalOpen(false)}
+              onSubmit={updateTransaction}
+              transacName={editTransacName}
+              category={editCategory}
+              amount={editAmount}
+              onTransacNameChange={(e) => setEditTransacName(e.target.value)}
+              onCategoryChange={(e) => setEditCategory(e.target.value)}
+              onAmountChange={(e) => setEditAmount(e.target.value)}
+            />
+          )}
+        </div>
       </div>
 
-        {/* ========Budget Chart======== */}
+      {/* ========Budget Chart======== */}
       <div className="budget-chart">
+        <h3>Transactions chart</h3>
         {transactions ? (
-          <BudgetChart transactions={transactions} width={"50%"} height={3} />
+          <BudgetChart transactions={transactions} width={"100%"} height={2} />
         ) : null}
       </div>
     </div>

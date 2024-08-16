@@ -2,11 +2,13 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 
 
 export const BudgetChart = ({transactions, width, height}) => {
+    const reversedTransac = [...transactions].reverse()
+    const maxAmount = Math.max(...reversedTransac.map(t => t.amount));
   return (
     <div>
         <ResponsiveContainer width={width}  aspect={height}>
       <LineChart
-          data={transactions}
+          data={reversedTransac}
           margin={{
             top: 5,
             right: 30,
@@ -15,10 +17,8 @@ export const BudgetChart = ({transactions, width, height}) => {
           }}
         >
           <XAxis dataKey="created" />
-          <YAxis />
+          <YAxis domain={[0, maxAmount]}/>
           <Tooltip />
-          {/* <Legend /> */}
-          {/* <Line type="monotone" dataKey="transac_name" stroke="#8884d8" activeDot={{ r: 8 }} /> */}
           <Line type="monotone" dataKey="amount" stroke="#0077b6" />
         </LineChart>
       </ResponsiveContainer> 

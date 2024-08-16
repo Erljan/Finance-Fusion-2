@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-// import { WatchlistList } from "../components/WatchlistList";
 import { api } from "../api";
+import { useNavigate } from "react-router-dom";
 
 // const WatchlistList = ({stock, watchlistPrices}) => {
 //     return (
@@ -14,6 +14,7 @@ import { api } from "../api";
 export const Watchlist = () => {
   const [watchlist, setWatchlist] = useState([]);
   const [watchlistPrices, setWatchlistPrices] = useState([]);
+  const navigate = useNavigate()
 
   useEffect(() => {
     const throttledUpdateWatchlistPrices = throttle(
@@ -84,7 +85,7 @@ export const Watchlist = () => {
   return (
     <div className="watchlist">
       <h3>Watchlist</h3>
-      {watchlist.map((stock, idx) => (
+      {watchlist.length > 0? watchlist.map((stock, idx) => (
         <div key={idx} className="each-watchlist">
           <li>
             {stock.stock_name} ({stock.symbol}) - Price: <span className="watchlist-price">${watchlistPrices[stock.symbol] || "loading..."}</span>
@@ -93,7 +94,7 @@ export const Watchlist = () => {
 
           <button className="remove-btn" onClick={() => removeWatchlist(stock.id)}>Remove</button>
         </div>
-      ))}
+      )) : <button onClick={()=> navigate("/stock")} className="add-watchlist-btn" >Add stocks</button>}
     </div>
   );
 };

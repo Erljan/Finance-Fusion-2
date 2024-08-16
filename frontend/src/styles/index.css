@@ -374,6 +374,7 @@ span.span-curr{
     grid-template-columns: 1fr 1fr;
     /* height: 100vh; */
     padding: 20px;
+    position: relative;
 }
 
 .transaction-container{
@@ -479,4 +480,109 @@ span.span-curr{
 
 .input-transac.amount{
     width: 90px;
+}
+
+
+.transac-item{
+    display: flex;
+    justify-content: space-around;
+    /* border: 1px solid white; */
+    margin: 20px 5px;
+    align-items: center;
+    height: 50px;
+    width: 98%;
+    padding: 10px;
+    position: relative;
+    border-radius: 5px;
+    background-color: #0d0220;
+    box-shadow: 1px 1px 10px 1px #a083ae;
+
+}
+
+
+.subtract-transac{
+    width: 100px;
+    /* border: 1px solid white; */
+    color: red;
+    margin-bottom: 0;
+
+}
+
+
+.transac-values{
+    /* border: 1px solid white; */
+    display: flex;
+    justify-content: space-between;
+    width: 50%;
+    height: 100%;
+    margin-bottom: 0;
+    align-items: center;
+}
+
+
+.remove-transac{
+    background-color: transparent;
+    color: #fb1717;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 2px #fb1717;
+    border: none;
+}
+
+
+.remove-transac:hover{
+    color: white;
+    background-color: #fb1717;
+}
+
+
+.edit-transac{
+    background-color: transparent;
+    color: #3b7095;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 2px #3b7095;
+    width: 50px;
+}
+
+.edit-transac:hover{
+    color: white;
+    background-color:#3b7095 ;
+}
+
+
+
+.modal-overlay{
+    /* border: 1px solid white; */
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 200px;
+    padding: 20px;
+    z-index: 2;
+    background-color: #0d0220;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 2px #515151;
+}
+
+
+.modal-overlay.open{
+    opacity: 1;
+}
+
+.add-watchlist-btn{
+    margin-top: 50px;
+    background-color: transparent;
+    color: #1745fb;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 2px #1745fb;
+}
+
+.add-watchlist-btn:hover{
+    color: white;
+    background-color: #1745fb;
 }

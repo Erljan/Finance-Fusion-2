@@ -19,7 +19,7 @@ export const BudgetChart = ({transactions, width, height}) => {
           <XAxis dataKey="created" />
           <YAxis domain={[0, maxAmount]}/>
           <Tooltip />
-          <Line type="monotone" dataKey="amount" stroke="#0077b6" />
+          <Line type="linear" dataKey="amount" stroke="#0077b6" />
         </LineChart>
       </ResponsiveContainer> 
     </div>

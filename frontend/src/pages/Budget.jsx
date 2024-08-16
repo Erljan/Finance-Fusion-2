@@ -23,7 +23,7 @@ export const Budget = () => {
   const [isTransacModalOpen, setIsTransacModalOpen] = useState(false);
   const [selectedTransactionId, setSelectedTransactionId] = useState(null);
 
-  const categories = ["Food", "Transport", "Entertainment", "Utilities", "Clothing", "Housing", "Other"]
+  const categories = ["Food", "Transport", "Entertainment", "Utilities", "Clothing", "Housing", "Insurance", "Other"]
 
   useEffect(() => {
     fetchTransac();
@@ -213,13 +213,13 @@ export const Budget = () => {
         {/* =======List of transactions======== */}
         <div className="transac-list">
           {transactions.map((transac, idx) => (
-            <div key={idx}>
-              <p>
-                {transac.amount} - {transac.transac_name} - {transac.category} -{" "}
-                {transac.created}
-              </p>
-              <button onClick={() => delTransaction(transac.id)}>Delete</button>
-              <button onClick={() => handleTransacModal(transac)}>Edit</button>
+            <div key={idx} className="transac-item">
+              <h5 className="subtract-transac">- ${transac.amount}</h5>
+              <p className="transac-values">{transac.transac_name} <span>{transac.category}</span> <span>{transac.created}</span></p>
+              {/* <p>{transac.category}</p>
+              <p>{transac.created}</p> */}
+              <button onClick={() => delTransaction(transac.id)} className="remove-transac">Delete</button>
+              <button onClick={() => handleTransacModal(transac)} className="edit-transac">Edit</button>
               <hr />
             </div>
           ))}
@@ -242,7 +242,7 @@ export const Budget = () => {
 
       {/* ========Budget Chart======== */}
       <div className="budget-chart">
-        <h3>Transactions chart</h3>
+        <h3>Transactions</h3>
         {transactions ? (
           <BudgetChart transactions={transactions} width={"100%"} height={2} />
         ) : null}

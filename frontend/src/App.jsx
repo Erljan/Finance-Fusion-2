@@ -9,6 +9,7 @@ import { NotFoundPage } from "./pages/NotFoundPage"
 import './styles/index.css'
 // import { WatchlistPage } from "./pages/WatchlistPage"
 import { Budget } from "./pages/Budget"
+import { ChatBot } from "./pages/ChatBot"
 
 
 function Logout(){
@@ -43,6 +44,14 @@ function App() {
               <ProtectedRoute>
                 <NavBar/>
                 <Budget/>
+
+              </ProtectedRoute>
+            }/>
+
+            <Route path="chatbot/" element={
+              <ProtectedRoute>
+                <NavBar/>
+                <ChatBot/>
 
               </ProtectedRoute>
             }/>

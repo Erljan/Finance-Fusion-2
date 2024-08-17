@@ -12,6 +12,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include('stocks_app.urls')),
     path('api/', include('budget_app.urls')),
+    path('api/', include('chatbot_app.urls')),
 
 ]
 

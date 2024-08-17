@@ -14,6 +14,7 @@ export function NavBar() {
             <Nav.Link as={Link} to="/">Dashboard</Nav.Link>
             <Nav.Link as={Link} to="/budget">Budget</Nav.Link>
             <Nav.Link as={Link} to="/stock">Stocks</Nav.Link>
+            <Nav.Link as={Link} to="/chatbot">Ask AI</Nav.Link>
 
           </Nav>
           <Nav>

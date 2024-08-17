@@ -244,7 +244,7 @@ export const Budget = () => {
       <div className="budget-chart">
         <h3>Transactions</h3>
         {transactions ? (
-          <BudgetChart transactions={transactions} width={"100%"} height={2} />
+          <BudgetChart transactions={transactions} width={"100%"} height={1} />
         ) : null}
       </div>
     </div>

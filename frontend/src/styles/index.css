@@ -392,7 +392,7 @@ span.span-curr{
 
 
 .budget-chart{
-    height: 400px;
+    /* height: 60%; */
     box-shadow: 1px 1px 10px 1px #515151;
     background-color: #0d0220;
     margin: 10px;
@@ -400,6 +400,23 @@ span.span-curr{
     padding: 20px;
     color: #1745fb;
     text-align: center;
+}
+
+.stockpage-chart{
+    /* border: 1px solid white; */
+    padding: 10px;
+    margin: 10px;
+    grid-area: right;
+    
+}
+
+
+.chart{
+    /* border: 1px solid white; */
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 2px #515151;
+    background-color: #0d0220;
+    color: #1745fb;
 }
 
 

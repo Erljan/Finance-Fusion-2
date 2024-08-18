@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Watchlist } from "../components/Watchlist"
 import { api } from "../api"
 import { BudgetChart } from "../components/BudgetChart"
+import { NewsDashboard } from "../components/NewsDashboard";
 
 export const Home = () => {
   const [transactions, setTransactions] = useState([]);
@@ -37,7 +38,8 @@ export const Home = () => {
 
       <div className="dashboard-news">
         <div>
-          News
+          <h3>Latest News</h3>
+          <NewsDashboard/>
         </div>
       </div>
     </div>

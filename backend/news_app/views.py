@@ -36,7 +36,9 @@ class GetNews(APIView):
 
                 data_response.append(data)
 
-            return Response(data_response, status=HTTP_200_OK)
+            all_news = {"news" : data_response}
+
+            return Response(all_news, status=HTTP_200_OK)
 
         except:
             return Response({"error": "No news"}, status=HTTP_400_BAD_REQUEST)

@@ -192,7 +192,7 @@ export const Stocks = () => {
         </div>
 
         <div className="summary">
-          <p>Summary: {summary}</p>
+          <p><span className="sum">Summary: </span>{summary}</p>
         </div>
 
         <div className="stock-news">

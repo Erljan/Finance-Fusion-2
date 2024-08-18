@@ -39,6 +39,9 @@ export const ChatBot = () => {
     <div className="chatbot-container">
       <div className="chatbot-display">
         <div className="chat-conversations">
+          {messages.length === 0 ? 
+          <p className="hello">Hello, how can I assist you today?</p> : null
+        }
           {messages.map((msg, idx) => (
             <div
               key={idx}

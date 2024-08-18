@@ -13,6 +13,7 @@ urlpatterns = [
     path('api/', include('stocks_app.urls')),
     path('api/', include('budget_app.urls')),
     path('api/', include('chatbot_app.urls')),
+    path('api/', include('news_app.urls')),
 
 ]
 

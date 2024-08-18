@@ -96,12 +96,6 @@ export const Watchlist = () => {
   }
 
 
-  // const handleChart = async(sym) => {
-  //   setSymbol(sym)
-  //   const response = await api.get(`api/stock/${symbol}/`)
-  //   setDataChart(response.data.data)
-  // }
-
   useEffect(()=>{
     getChart()
   },[symbol])

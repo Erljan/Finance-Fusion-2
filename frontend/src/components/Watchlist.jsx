@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
 import { api } from "../api";
 import { useNavigate } from "react-router-dom";
+import { Chart } from "./Chart";
 
-// const WatchlistList = ({stock, watchlistPrices}) => {
-//     return (
-//         <li>
-//           {stock.stock_name}  ({stock.symbol}) - Price: {" "}
-//           {watchlistPrices[stock.symbol] || "loading..."}
-//         </li>
-//     )
-//   }
 
 export const Watchlist = () => {
   const [watchlist, setWatchlist] = useState([]);
   const [watchlistPrices, setWatchlistPrices] = useState([]);
   const navigate = useNavigate()
+
+  const [symbol, setSymbol] = useState("AAPL")
+  const [dataChart, setDataChart] = useState("")
+
+
 
   useEffect(() => {
     const throttledUpdateWatchlistPrices = throttle(
@@ -31,9 +29,15 @@ export const Watchlist = () => {
     return () => clearInterval(interval);
   }, [watchlist]);
 
+
+
+
   useEffect(() => {
     getWatchlist();
   }, []);
+
+
+
 
   const getWatchlist = async () => {
     const response = await api.get("api/stock/");
@@ -41,6 +45,8 @@ export const Watchlist = () => {
 
     setWatchlist(data);
   };
+
+
 
   const removeWatchlist = async (id) => {
     await api.delete(`api/stock/delete/${id}/`);
@@ -70,6 +76,7 @@ export const Watchlist = () => {
     }
   };
 
+
   const throttle = (func, limit) => {
     let inThrottle;
     return function (...args) {
@@ -82,12 +89,31 @@ export const Watchlist = () => {
     };
   };
 
+
+  const getChart = async () => {
+    const response = await api.get(`api/stock/${symbol}/`)
+    setDataChart(response.data.data)
+  }
+
+
+  // const handleChart = async(sym) => {
+  //   setSymbol(sym)
+  //   const response = await api.get(`api/stock/${symbol}/`)
+  //   setDataChart(response.data.data)
+  // }
+
+  useEffect(()=>{
+    getChart()
+  },[symbol])
+
+
   return (
+    <>
     <div className="watchlist">
       <h3>Watchlist</h3>
       {watchlist.length > 0? watchlist.map((stock, idx) => (
-        <div key={idx} className="each-watchlist">
-          <li>
+        <div key={idx} className="each-watchlist" onClick={()=> setSymbol(stock.symbol)}>
+          <li >
             {stock.stock_name} ({stock.symbol}) - Price: <span className="watchlist-price">${watchlistPrices[stock.symbol] || "loading..."}</span>
             {/* {watchlistPrices[stock.symbol] || "loading..."} */}
           </li>
@@ -95,6 +121,12 @@ export const Watchlist = () => {
           <button className="remove-btn" onClick={() => removeWatchlist(stock.id)}>Remove</button>
         </div>
       )) : <button onClick={()=> navigate("/stock")} className="add-watchlist-btn" >Add stocks</button>}
+
     </div>
+      <div className="watchlist-chart">
+        <h2>{symbol}</h2>
+        <Chart data={dataChart} width="50%" height={2}/>
+      </div>
+    </>
   );
 };

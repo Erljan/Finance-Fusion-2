@@ -15,6 +15,10 @@
 pip install yfinance
 ```
 
+### SQL Schema
+<img width="935" alt="Screenshot 2024-08-18 at 7 34 56 PM" src="https://github.com/user-attachments/assets/57fa3e3d-9032-46c3-b116-80b78356af89">
+
+
 #### Practice rechart/flowbite
 - Watch youtube videos/read docs and practice implementing them
 - practice frontend seeing the stock prices in real time

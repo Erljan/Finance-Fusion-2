@@ -1,9 +1,13 @@
 ## Creating the Finance Fusion App
 
 ### What is the finance fusion?
+- It is a stock-tracker and budgeting app fused together
 - Allows the user to see current stock prices with real time data
 - Allows the user to add a stock to their watchlist 
 - See a chart of the stock prices
+- Create a budget for expenses
+- Track expenses
+- Get latest news related to specific stock
 
 
 #### Practice Yfinance API
@@ -20,6 +24,7 @@ pip install yfinance
 - practice frontend seeing the stock prices in real time
 - practice using chart using flowbite
 
+![alt text](http://url/to/schema.png)
 
 ## Step 1:
 - Create our Django backend
@@ -69,3 +74,14 @@ python manage.py startapp stock_app
 ### Step 7:
 - Add the functionalities for the budget
 - Create charts
+
+
+### Step 8:
+- Start building dashboard
+- Add the watchlist, stock chart, transaction chart, and news
+
+
+### Future Addition to the app
+- Add a chart for the categories 
+- Add a income tax calculator
+- Add an algorithmic trading and see potential stock prices 

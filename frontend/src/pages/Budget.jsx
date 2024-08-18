@@ -29,6 +29,7 @@ export const Budget = () => {
     fetchTransac();
     getBudget();
     // console.log(isTransacModalOpen)
+    
   }, []);
 
   const fetchTransac = async () => {
@@ -120,6 +121,7 @@ export const Budget = () => {
       // setBudget(response.data[0].budgetAmt)
       setBudget(upBudget);
       getBudget();
+      // console.log(budget)
     } catch (error) {
       console.log(error);
     }
@@ -175,7 +177,7 @@ export const Budget = () => {
           <h3>Add Transaction</h3>
           <form action="" onSubmit={(e) => {
                 e.preventDefault()
-                if(amount > budget){
+                if((amount - 0.00) > budget){
                   alert("You don't have enough funds")
                 } else{
                   addTransaction(e)
@@ -187,13 +189,7 @@ export const Budget = () => {
               placeholder="Title"
               className="input-transac"
             />
-            {/* <input
-              type="text"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              placeholder="Category"
-              className="input-transac"
-            /> */}
+
             <select value={category} onChange={(e) => setCategory(e.target.value)} className="input-transac">
               <option value="" disabled>Select Category</option>
             {categories.map((cat,idx) => (

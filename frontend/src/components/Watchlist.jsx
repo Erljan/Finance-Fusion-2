@@ -109,6 +109,7 @@ export const Watchlist = () => {
 
   return (
     <>
+    <div className="dashboard-watchlist">
     <div className="watchlist">
       <h3>Watchlist</h3>
       {watchlist.length > 0? watchlist.map((stock, idx) => (
@@ -125,8 +126,10 @@ export const Watchlist = () => {
     </div>
       <div className="watchlist-chart">
         <h2>{symbol}</h2>
-        <Chart data={dataChart} width="50%" height={2}/>
+        <Chart data={dataChart} width="100%" height={2}/>
       </div>
+
+    </div>
     </>
   );
 };

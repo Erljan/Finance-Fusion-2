@@ -37,8 +37,8 @@
 .chart{
     /* border: 1px solid white; */
     border-radius: 5px;
-    box-shadow: 1px 1px 10px 2px #515151;
-    background-color: #0d0220;
+    /* box-shadow: 1px 1px 10px 2px #515151; */
+    /* background-color: #0d0220; */
     color: #1745fb;
 }
 
@@ -233,60 +233,6 @@ span.span-curr{
 }
 
 
-.watchlist{
-    /* border: 1px solid white; */
-    width: 40%;
-    height: 350px;
-    overflow:auto ;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 1px 1px 10px 2px #515151;
-    background-color: #0d0220;
-    margin: 20px;
-    border-radius: 5px;
-    /* scroll-behavior:smooth; */
-    scrollbar-width: thin; 
-    scrollbar-color: #888 #1e1e1e;
-
-}
-
-
-
-.each-watchlist{
-    /* border: 1px solid white; */
-    text-align: left;
-    display: flex;
-    height: 50px;
-    justify-content: space-between;
-    align-items: center;
-    list-style: none;
-    box-shadow: inset 1px 1px 5px 1px #515151;
-    padding: 20px;
-    margin: 10px 0;
-    border-radius: 5px;
-    background-color: #10002b;
-    cursor: pointer;
-}
-
-.remove-btn{
-    background-color: transparent;
-    color: #fb1717;
-    border-radius: 5px;
-    box-shadow: 1px 1px 10px 2px #fb1717;
-    border: none;
-}
-
-.remove-btn:hover{
-    /* box-shadow: 1px 1px 10px 2px #fb1717; */
-    background-color: #fb1717 ;
-    color: white;
-    border: noen;
-}
-
-.watchlist-price{
-    color: #74a6f0;
-    font-size: x-large;
-}
 
 
 .login-page{
@@ -407,6 +353,8 @@ span.span-curr{
     padding: 10px;
     margin: 10px;
     grid-area: right;
+    background-color: #0d0220;
+    box-shadow: 1px 1px 10px 2px #515151;
     
 }
 
@@ -414,8 +362,6 @@ span.span-curr{
 .chart{
     /* border: 1px solid white; */
     border-radius: 5px;
-    box-shadow: 1px 1px 10px 2px #515151;
-    background-color: #0d0220;
     color: #1745fb;
 }
 
@@ -683,6 +629,119 @@ span.span-curr{
     
 }
 
-/* .bot-chat{
-    align-self: flex-start;
-} */
+
+/* ========DASHBOARD STOCK CHART========== */
+.watchlist{
+    /* border: 1px solid white; */
+    /* width: 40%; */
+    /* height: 350px; */
+    overflow:auto ;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 1px 1px 10px 2px #515151;
+    background-color: #0d0220;
+    margin: 10px;
+    border-radius: 5px;
+    /* scroll-behavior:smooth; */
+    scrollbar-width: thin; 
+    scrollbar-color: #888 #1e1e1e;
+
+}
+
+
+
+.each-watchlist{
+    /* border: 1px solid white; */
+    text-align: left;
+    display: flex;
+    height: 50px;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    box-shadow: inset 1px 1px 5px 1px #515151;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 5px;
+    background-color: #10002b;
+    cursor: pointer;
+}
+
+.remove-btn{
+    background-color: transparent;
+    color: #fb1717;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px 2px #fb1717;
+    border: none;
+}
+
+.remove-btn:hover{
+    /* box-shadow: 1px 1px 10px 2px #fb1717; */
+    background-color: #fb1717 ;
+    color: white;
+    border: noen;
+}
+
+.watchlist-price{
+    color: #74a6f0;
+    font-size: x-large;
+}
+
+
+.watchlist-chart{
+    /* border: 1px solid white; */
+    background-color: #0d0220;
+    box-shadow: 1px 1px 10px 2px #515151;
+    border-radius: 5px;
+    margin: 10px;
+    grid-area: right;
+    padding: 20px;
+}
+
+
+.watchlist-dashboard{
+    display: grid;
+    /* border: 1px solid white; */
+    grid-template-areas: 
+    'left right'
+    'bot-left bot-right';
+    grid-area: top;
+
+}
+
+.dashboard-watchlist{
+    display: grid;
+    margin: 20px;
+    grid-template-areas: 
+    'left right';
+    grid-template-columns: 1fr 1.5fr;
+
+}
+
+.dashboard{
+    display: grid;
+    grid-template-areas: 
+    'top top'
+    'bot-left bot-right';
+    /* border: 1px solid white; */
+    grid-template-columns: 1fr 1fr;
+
+}
+
+
+.budget-chart-dashboard{
+    grid-area: bot-left;
+    background-color: #0d0220;
+    box-shadow: 1px 1px 10px 2px #515151;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+}
+
+
+.dashboard-news{
+    grid-area: bot-right;
+}
+
+
+

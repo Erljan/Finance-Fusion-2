@@ -1,9 +1,10 @@
 // import { useContext } from "react"
+import { useState } from "react"
 import { Watchlist } from "../components/Watchlist"
 // import { Chart } from "../components/Chart"
 
 export const Home = () => {
-  // const watchlist = useContext()
+  const [stock, setStock] = useState("")
 
   return (
     <div>

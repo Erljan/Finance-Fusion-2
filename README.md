@@ -28,7 +28,6 @@ pip install yfinance
 - practice frontend seeing the stock prices in real time
 - practice using chart using flowbite
 
-![alt text](http://url/to/schema.png)
 
 ## Step 1:
 - Create our Django backend

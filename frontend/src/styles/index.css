@@ -250,6 +250,7 @@ span.span-curr{
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     background-color:#10002b;
 
     color: black;
@@ -258,6 +259,7 @@ span.span-curr{
 
 .login-form{
     /* border: 1px solid white; */
+    margin: 40px;
     display: flex;
     flex-direction: column;
     width: 500px;
@@ -1043,5 +1045,9 @@ span.span-curr{
 
     .chat-input{
         width: 77%;
+    }
+
+    .login-form{
+        width: 350px;
     }
   }

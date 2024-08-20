@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 export const Register = () => {
   return (
     <div className="login-page">
+      <img src="src/images/logo1.png" alt="" />
+
       <div className="login-form">
 
         <Form route="api/user/register/" method="register" />

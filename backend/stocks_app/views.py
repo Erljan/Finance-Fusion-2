@@ -91,32 +91,6 @@ class GetStockPrices(APIView):
 
         return Response(response_data, status=HTTP_200_OK)
     
-
-
-# class GetStockPrices(APIView):
-#     permission_classes = [IsAuthenticated]
-
-#     def get(self, request, symbol):
-#         cache_key = f'stock_data_{symbol}' # Unique identifier key for each symbol
-#         data = cache.get(cache_key)  # try to get the data from the cache using the key
-        
-#         if data is None: # if data is not in the cache
-#             # fetch fresh data from the stock API
-#             stock_price = yf.Ticker(symbol).history(period='1d').Close.iloc[-1]
-#             stock_name = yf.Ticker(symbol).info.get('longName', 'Unknown')
-#             recent_datas = yf.download(symbol, period="1d", interval='5m')
-#             times = recent_datas.index
-#             values = recent_datas['Close']
-#             data = [{"time": time.strftime('%H:%M'), "value": round(value, 2)} for time, value in zip(times, values)]
-            
-#             #store the fresh data in the cache with the unique key
-#             cache.set(cache_key, {
-#                 'name': stock_name,
-#                 'price': round(stock_price, 2),
-#                 'data': data,
-#             }, timeout=30)  # Cache for 10 minutes for performance improvement
-
-#         return Response(data, status=HTTP_200_OK)
     
 
 

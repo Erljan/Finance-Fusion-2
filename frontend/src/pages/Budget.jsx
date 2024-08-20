@@ -216,7 +216,7 @@ export const Budget = () => {
               <p>{transac.created}</p> */}
               <button onClick={() => delTransaction(transac.id)} className="remove-transac">Delete</button>
               <button onClick={() => handleTransacModal(transac)} className="edit-transac">Edit</button>
-              <hr />
+              {/* <hr /> */}
             </div>
           ))}
 

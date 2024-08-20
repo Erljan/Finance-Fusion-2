@@ -123,7 +123,7 @@ export const Stocks = () => {
   return (
     <>
       <div className="stocks-container">
-        <div className="stock-search-details">
+        {/* <div className="stock-search-details"> */}
           {/* ==========Search========== */}
           <div className="search-container">
             <form action="" onSubmit={getStock} className="search-form">
@@ -142,6 +142,7 @@ export const Stocks = () => {
               />
             </form>
           </div>
+
 
 
           {/* ==========Overview/Details========== */}
@@ -181,15 +182,15 @@ export const Stocks = () => {
               <div>Loading...</div>
               // "Loading..."
             )}
-          </div>
+          {/* </div> */}
         </div>
-
 
 
         {/* ======CHART===== */}
         <div className="stockpage-chart">
           <Chart data={dataChart} width="100%" height={1.5} />
         </div>
+
 
         <div className="summary">
           <p><span className="sum">Summary: </span>{summary}</p>

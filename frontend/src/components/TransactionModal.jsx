@@ -5,8 +5,8 @@ export const TransacModal = ({ isOpen, onClose, onSubmit, transacName, category,
 
   return (
     <div className="modal-overlay">
-      <div className="modal-content">
-        <h2>Update Transaction</h2>
+      {/* <div className="modal-content"> */}
+        <h2 className="update-transac-modal">Update Transaction</h2>
         <form onSubmit={onSubmit} className="add-transac">
           <input type="text" value={transacName} onChange={onTransacNameChange} placeholder="Transaction Name" />
           <input type="text" value={category} onChange={onCategoryChange} placeholder="Category" />
@@ -14,7 +14,7 @@ export const TransacModal = ({ isOpen, onClose, onSubmit, transacName, category,
           <button type="submit" >Update</button>
         </form>
         <button onClick={onClose} className="remove-transac">Cancel</button>
-      </div>
+      {/* </div> */}
     </div>
   );
 };

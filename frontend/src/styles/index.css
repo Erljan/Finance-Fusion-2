@@ -7,6 +7,7 @@
 .navbar{
     box-shadow: 1px 1px 10px #3c3c3c;
     background-color: #170f24;
+    color: white;
 }
 
 .logo{
@@ -47,13 +48,14 @@
     box-shadow: 1px 1px 10px 2px #515151;
     background-color: #0d0220;
     margin: 20px;
-    /* padding: 10px; */
     border-radius: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
     /* color: #f0f0f0; */
     /* border: 1px solid white; */
+    grid-area: main;
+    z-index: 2;
 }
 
 .search-form{
@@ -112,6 +114,7 @@
     border-radius: 5px;
     padding: 20px;
     position: relative;
+    margin-top: 20%;
 }   
 
 
@@ -728,6 +731,8 @@ span.span-curr{
 }
 
 .dashboard{
+    /* height: 100vh;
+    width: 100vw; */
     display: grid;
     grid-template-areas: 
     'top top'
@@ -802,3 +807,241 @@ span.span-curr{
     text-align: left;
 }
 
+
+
+
+/* ==========Mobile========= */
+@media screen and (max-width: 480px) {
+    .dashboard {
+      display: flex;
+      flex-direction: column;
+      width: 100vw;
+      margin: 0;
+    }
+
+    .dashboard-watchlist{
+        /* background-color: blue; */
+        width: 100vw;
+        margin: 0;
+        display: flex;
+        flex-direction: column-reverse;
+        
+    }
+
+    .each-watchlist{
+        font-size: small;
+    }
+
+    .watchlist-price{
+        font-size: small;
+    }
+
+    .remove-btn{
+        width: 5em;
+        font-size: small;
+    }
+
+    .budget-chart-dashboard{
+       font-size: small;
+       padding: 3px;
+       padding-left: 0;
+       margin: 10px;
+       
+    }
+
+    .dashboard-news{
+        margin: 10px;
+    }
+
+    .news-headline{
+        font-size: x-small;
+    }
+
+ /* ======stocks page====== */
+    .stocks-container{
+        display: flex;
+        flex-direction: column-reverse;
+        font-size: small;
+    }
+    
+    .search-form{
+        padding: 10px;
+    }
+
+    .search-btn{
+        height: 35px;
+    }
+
+
+    .search-container{
+        order: 5;
+    }
+
+    .stockpage-chart{
+        order: 4;
+    }
+
+    .stock-details{
+        order: 3;
+        font-size: small;
+        margin: 5px;
+    }
+
+    .remove-watchlist-btn{
+        bottom: 5px;
+        height: 25px;
+        color: white;
+        background-color: red;
+        font-size: x-small;
+    }
+    .add-btn{
+        bottom: 5px;
+        height: 25px;
+        color: white;
+        background-color: blue;
+    }
+
+    .summary{
+        order: 2;
+        height: 300px;
+        overflow: auto;
+        margin: 10px 5px;
+    }
+
+    .news-container{
+        order: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .each-news{
+        width: 95%;
+        margin: 10px 0;
+    }
+
+    /* ====Budget page===== */
+    .budget-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-transac{
+        margin: 5px;
+    }
+
+    .transaction-container{
+        font-size: small;
+        position: relative;
+    }
+
+    .transac-list{
+        height: 380px;
+        
+    }
+
+    .subtract-transac{
+        font-size: xx-small;
+        /* border: 1px solid white; */
+        width: 40px;
+        margin: 0;
+        padding: 0;
+        
+    }
+
+    .transac-values{
+        font-size: xx-small;
+        width: 150px;
+        /* border: 1px solid white; */
+
+    }
+
+    .transac-item{
+        padding: 0;
+    }
+
+    .remove-transac{
+        visibility: hidden;
+        position: relative;
+        width: 0px;
+    }
+
+    .remove-transac:before{
+        content: "x";
+        visibility: visible;
+        position: absolute;
+    }
+
+    .edit-transac{
+        visibility: hidden;
+        position: relative;
+        width: 20px;
+    }
+
+    .edit-transac:before{
+        content: "\270F";
+        visibility: visible;
+        position: absolute;
+    }
+
+    .modal-overlay{
+        font-size: xx-small;
+        text-align: center;
+        height: 300px;
+        width: 200px;
+        display: flex;
+        flex-direction: column;
+        /* color: #0d0220; */
+        /* border: 1px solid white; */
+
+    }
+
+    .modal-overlay button{
+        visibility: visible;
+        width: 50px;
+        height: 20px;
+    }
+
+    .modal-overlay button:before{
+        content: "";
+        transform: translate(-50%);
+    }
+
+    .modal-content{
+        text-align: center;
+        /* border: 1px solid white; */
+    }
+
+
+    /* =====Chatbot page===== */
+
+    .chatbot-container{
+        /* border: 1px solid white; */
+        padding: 0px;
+    }
+
+    .chatbot-display{
+        /* border: 1px solid white; */
+        margin: 20px;
+        width: 90%;
+        height: 600px;
+    }
+
+    .chat-form{
+        /* border: 1px solid white;  */
+        /* background-color: #0d0220; */
+        margin: 1px;
+        width: 90%;
+        padding-bottom: 20px;
+        height: 70px;
+    }
+
+    .chat-search{
+        width: 20%;
+        font-size: x-small;
+        height: 30px;
+    }
+
+    .chat-input{
+        width: 77%;
+    }
+  }

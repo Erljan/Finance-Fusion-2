@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export const Register = () => {
   return (
     <div className="login-page">
-      <img src="src/images/logo1.png" alt="" />
+      <img src="public/logo1.png" alt="" />
 
       <div className="login-form">
 

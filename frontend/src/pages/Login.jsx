@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export const Login = () => {
   return (
     <div className="login-page">
-      <img src="src/images/logo1.png" alt="" />
+      <img src="public/logo1.png" alt="" />
       <div className="login-form">
       <Form route="api/token/" method="login" />
       <p>

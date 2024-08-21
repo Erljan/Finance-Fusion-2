@@ -50,7 +50,7 @@ export function NavBar() {
             <Nav.Link as={Link} to="/budget">Budget</Nav.Link>
             <Nav.Link as={Link} to="/stock">Stocks</Nav.Link>
             <Nav.Link as={Link} to="/chatbot">Ask AI</Nav.Link>
-            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+            <NavDropdown title="Logout" id="basic-nav-dropdown">
               <NavDropdown.Item as={Link} to="/logout">Logout</NavDropdown.Item>
               
             </NavDropdown>

@@ -864,6 +864,7 @@ span.span-curr{
         display: flex;
         flex-direction: column-reverse;
         font-size: small;
+        padding: 10px;
     }
     
     .search-form{
@@ -881,12 +882,14 @@ span.span-curr{
 
     .stockpage-chart{
         order: 4;
+        margin: 10px 0;
+        border-radius: 5px;
     }
 
     .stock-details{
         order: 3;
         font-size: small;
-        margin: 5px;
+        margin: 10px 0;
     }
 
     .remove-watchlist-btn{
@@ -925,6 +928,7 @@ span.span-curr{
     .budget-container{
         display: flex;
         flex-direction: column;
+        padding: 0;
     }
 
     .input-transac{
@@ -942,7 +946,7 @@ span.span-curr{
     }
 
     .subtract-transac{
-        font-size: xx-small;
+        font-size: x-small;
         /* border: 1px solid white; */
         width: 40px;
         margin: 0;
@@ -951,14 +955,18 @@ span.span-curr{
     }
 
     .transac-values{
-        font-size: xx-small;
-        width: 150px;
+        font-size: x-small;
+        width: 180px;
         /* border: 1px solid white; */
+        padding: 0;
 
     }
 
     .transac-item{
         padding: 0;
+        /* border: 1px solid white;  */
+        width: 290px;
+        margin: 15px 0;
     }
 
     .remove-transac{

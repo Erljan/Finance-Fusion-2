@@ -841,6 +841,7 @@ span.span-curr{
     .remove-btn{
         width: 5em;
         font-size: small;
+        text-align: center;
     }
 
     .budget-chart-dashboard{

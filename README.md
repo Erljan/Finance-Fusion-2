@@ -45,6 +45,12 @@
 - Then log in with your credentials
 - Explore the features!
 
+#### If it's not working
+- You might need to cd to backend and run
+  ```
+  pip install requirements.txt
+  ```
+
 ### Reminder
 - The 'Latest News' on the main page will need an env file and store your own Finnhub API key for it to work
 - The 'Ask AI' feature will also need your own OpenAI API key for it to work.

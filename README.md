@@ -9,6 +9,36 @@
 - Track expenses
 - Get latest news related to specific stock
 
+### Get Started
+- Clone the repo
+- Open the repo in an IDE
+- Open terminal and cd to 'frontend'
+    run
+    ```
+    npm install vite --save-dev
+    ```
+    then run
+  ```
+  npm run dev
+  ```
+- Open another terminal and cd to 'backend'
+    run
+  ```
+  python3 manage.py runserver
+  ```
+- The app should work on localhost
+
+### Reminder
+- The latest 'Latest News' on the main page will need an env file and store your own Finnhub API key for it to work
+- The 'Ask AI' feature will also need your own OpenAI API key for it to work.
+- If you want to see the demo of the overall project, go to https://youtu.be/Z1rv9NDgNbk 
+
+<br/>
+<br/>
+<br/>
+
+
+### Step by step guidelines on how I built this app
 
 #### Practice Yfinance API
 - Learn more about yfinance

@@ -25,7 +25,7 @@ export const Stocks = () => {
   }, []);
 
   const getWatchlist = async () => {
-    const response = await api.get("api/stock/");
+    const response = await api.get("/api/stock/");
     const data = response.data;
 
     setWatchlist(data);
@@ -33,11 +33,10 @@ export const Stocks = () => {
 
   const getStock = async (e) => {
     if (e) e.preventDefault();
-
-    // const formData = new FormData(e.target)
-
+    
+    
     const symbol = stockSymbol;
-    const stocks = await api.get(`api/stock/${symbol}/`);
+    const stocks = await api.get(`/api/stock/${symbol}/`);
     const response = stocks.data;
 
     setPrice(response.price);
@@ -65,7 +64,7 @@ export const Stocks = () => {
     if (currPrice && stockName) {
       try {
         
-        const response = await api.post("api/stock/", {
+        const response = await api.post("/api/stock/", {
           stock_name: stockName,
           symbol: stockSymbol,
         });
@@ -97,7 +96,7 @@ export const Stocks = () => {
     );
     if (stockToRemove) {
       try {
-        await api.delete(`api/stock/delete/${stockToRemove.id}/`);
+        await api.delete(`/api/stock/delete/${stockToRemove.id}/`);
         setWatchlist(
           watchlist.filter((stock) => stock.id !== stockToRemove.id)
         );

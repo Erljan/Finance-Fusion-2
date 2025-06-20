@@ -23,28 +23,43 @@ class GetStock(APIView):
     def get(self, request, symbol):
         stock_price = yf.Ticker(symbol).history(period='1d').Close.iloc[-1] # Get the latest closing price
 
-        stock_name = yf.Ticker(symbol).info['longName']  # Get the stock price name
         recent_datas = yf.download(symbol, period="1d", interval='1m')
         times = recent_datas.index
-        values = recent_datas['Close']
+        try:
+            values = recent_datas['Close']
+            if isinstance(values, dict) or hasattr(values, 'columns'):
+                values = values[symbol]
+        except Exception as e:
+            print("Error extracting Close prices:", e)
+            values = []
 
-        fiftyLow = yf.Ticker(symbol).info['fiftyTwoWeekLow']
-        fiftyHigh = yf.Ticker(symbol).info['fiftyTwoWeekHigh']
-        dayLow = yf.Ticker(symbol).info['dayLow']
-        dayHigh = yf.Ticker(symbol).info['dayHigh']
-        currency = yf.Ticker(symbol).info['currency']
-        summary = yf.Ticker(symbol).info['longBusinessSummary']
+        info = {}
+        try:
+            info = yf.Ticker(symbol).info or {}
+        except Exception as e:
+            print("Error getting .info:", e)
+
+        stock_name = info.get('longName', symbol)
+        fiftyLow = round(float(info.get('fiftyTwoWeekLow', 0)), 2)
+        fiftyHigh = round(float(info.get('fiftyTwoWeekHigh', 0)), 2)
+        dayLow = round(float(info.get('dayLow', 0)), 2)
+        dayHigh = round(float(info.get('dayHigh', 0)), 2)
+        currency = info.get('currency', 'USD')
+        summary = info.get('longBusinessSummary', 'No summary available')
 
         data = []
-        for time, value in zip(times,values):
+        for time, value in zip(times, values):
             formatted_time = time.strftime('%H:%M')
-            data.append({"time": formatted_time, "value": round(value,2)})
-        # print(data)
+            try:
+                print("Value: =====>", value)
+                numeric_value = round(float(value), 2)
+            except (TypeError, ValueError):
+                numeric_value = None  
+            data.append({"time": formatted_time, "value": numeric_value})
+
+        print("========>",data)
 
 
-        # finnhub_client = finnhub.Client(api_key="cqpejp9r01qr5jic95igcqpejp9r01qr5jic95j0")
-        # today = datetime.today().strftime('%Y-%m-%d')
-        # news = finnhub_client.company_news(symbol, _from=today, to=today)
         news_sym = yf.Ticker(symbol)
         latest_news = news_sym.news[:3]
 

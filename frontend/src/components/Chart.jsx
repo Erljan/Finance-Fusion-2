@@ -7,6 +7,7 @@ import {
     Tooltip,
   } from "recharts";
 
+// eslint-disable-next-line react/prop-types
 export const Chart = ({data, width, height}) => {
   return (
     <div className="chart">

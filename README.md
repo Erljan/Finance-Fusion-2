@@ -21,22 +21,39 @@
   ```
   npm run dev
   ```
-- Open another terminal and cd to 'backend'
-    run
+- Open another terminal and create your database
   ```
+  # Run this command below to go to postgres
+  psql -U postgres
+  
+  # then inside psql
+  CREATE DATABASE fusion_db
+  ```
+- Open another terminal and cd to 'backend'
+  ```
+  # Run these two commands to migrate your newly created database to the backend
+  python manage.py makemigrations
+  python manage.py migrate
+
+  # Then run this to run the server
   python3 manage.py runserver
   ```
 - The app should work on localhost
 
+#### When the app is working
+- Go to 'create an account'
+- Then log in with your credentials
+- Explore the features!
+
 ### Reminder
-- The latest 'Latest News' on the main page will need an env file and store your own Finnhub API key for it to work
+- The 'Latest News' on the main page will need an env file and store your own Finnhub API key for it to work
 - The 'Ask AI' feature will also need your own OpenAI API key for it to work.
-- If you want to see the demo of the overall project, go to https://youtu.be/Z1rv9NDgNbk 
+- This project was done in September 2024
+- If you want to see the full demo of the overall project, go to https://youtu.be/Z1rv9NDgNbk 
 
 <br/>
 <br/>
 <br/>
-
 
 ### Step by step guidelines on how I built this app
 

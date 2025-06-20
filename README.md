@@ -54,7 +54,7 @@
 ### Reminder
 - The 'Latest News' on the main page will need an env file and store your own Finnhub API key for it to work
 - The 'Ask AI' feature will also need your own OpenAI API key for it to work.
-- This project was done in September 2024
+- This project was done in August 2024, so there might be a few errors and code that will need to be updated (I just haven't had time to look into this due to my internship)
 - If you want to see the full demo of the overall project, go to https://youtu.be/Z1rv9NDgNbk 
 
 <br/>

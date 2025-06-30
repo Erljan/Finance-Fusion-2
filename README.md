@@ -2,20 +2,20 @@
 
 ### What is the finance fusion?
 - It is a stock-tracker and budgeting app fused together
-- Allows the user to see current stock prices with real time data
+- Allows the user to see current stock prices with real-time data
 - Allows the user to add a stock to their watchlist 
 - See a chart of the stock prices
 - Create a budget for expenses
 - Track expenses
-- Get latest news related to specific stock
+- Get the latest news related to a specific stock
 
 ### Get Started
 - Clone the repo
 - Open the repo in an IDE
 - Open terminal and cd to Finance-Fusion-2/backend
-- Create a .env file copy the ".env.example" file and paste it into your .env
-- **NOTE**: You will need to have a finnhub and OpenAI APIs to access the AI and stocks news features. Otherwise, it will only have limited features 
-- After creating .env file, cd back to Finance-Fusion-2
+- Create a .env file, copy the ".env.example" file, and paste it into your .env file
+- **NOTE**: You will need to have a Finnhub and OpenAI API to access the AI and stocks news features. Otherwise, it will only have limited features 
+- After creating the .env file, cd back to the Finance-Fusion-2 directory and
 - Run
 ```
 docker compose up
@@ -26,24 +26,26 @@ docker compose up
 - Then log in with your credentials
 - Explore the features!
 
+### If you want to see the full demo (or if the app doesn't work on your device)
+- Please go to https://youtu.be/Z1rv9NDgNbk 
+
 ### Reminder
-- You will need to have your own Finnhub API to access news features in the main page
-- The 'Ask AI' feature will also need your own OpenAI API key for it to work.
-- This project was done in August 2024, so there might be a few errors and code that will need to be updated (I just haven't had time to look into this due to my internship)
-- If you want to see the full demo of the overall project, go to https://youtu.be/Z1rv9NDgNbk 
+- You will need to have your own Finnhub API to access news features on the main page
+- The 'Ask AI' feature will also require your own OpenAI API key for it to function properly.
+- This project was done in August 2024, so there might be a few errors in the console or in the code, but it should work (I just haven't had time to look into this due to my internship)
 
-- ENJOY AND THANK YOU FOR REVIEWING MY PROJECT! 😊
+***ENJOY AND THANK YOU FOR REVIEWING MY PROJECT!*** 😊
 
 <br/>
 <br/>
 <br/>
 
-### Step by step guidelines on how I built this app
+### Step-by-step guidelines on how I built this app
 
 #### Practice Yfinance API
 - Learn more about yfinance
 - Learn how to use it to get real-time data
-- Checkout what it can do and what we can pull from it
+- Check out what it can do and what we can pull from it
 - Then practice adding them to the model and store to database
 ```
 pip install yfinance

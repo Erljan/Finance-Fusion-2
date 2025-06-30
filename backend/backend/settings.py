@@ -90,10 +90,21 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'fusion_db',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fusion_db',
+        'NAME': os.getenv('POSTGRES_DB', 'fusion_db'),
+        'USER': os.getenv('POSTGRES_USER', 'fusion_user'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD', 'fusion_pass'),
+        'HOST': os.getenv('POSTGRES_HOST', 'db'),
+        'PORT': os.getenv('POSTGRES_PORT', '5432'),
     }
 }
 

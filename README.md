@@ -27,6 +27,7 @@
 ```
 docker compose up
 ```
+- Then go to http://localhost:5173/
 
 #### When the app is working
 - Go to 'create an account'

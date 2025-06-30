@@ -12,50 +12,27 @@
 ### Get Started
 - Clone the repo
 - Open the repo in an IDE
-- Open terminal and cd to 'frontend'
-    run
-    ```
-    npm install vite --save-dev
-    ```
-    then run
-  ```
-  npm run dev
-  ```
-- Open another terminal and create your database
-  ```
-  # Run this command below to go to postgres
-  psql -U postgres
-  
-  # then inside psql
-  CREATE DATABASE fusion_db
-  ```
-- Open another terminal and cd to 'backend'
-  ```
-  # Run these two commands to migrate your newly created database to the backend
-  python manage.py makemigrations
-  python manage.py migrate
-
-  # Then run this to run the server
-  python3 manage.py runserver
-  ```
-- The app should work on localhost
+- Open terminal and cd to Finance-Fusion-2/backend
+- Create a .env file copy the ".env.example" file and paste it into your .env
+- **NOTE**: You will need to have a finnhub and OpenAI APIs to access the AI and stocks news features. Otherwise, it will only have limited features 
+- After creating .env file, cd back to Finance-Fusion-2
+- Run
+```
+docker compose up
+```
 
 #### When the app is working
 - Go to 'create an account'
 - Then log in with your credentials
 - Explore the features!
 
-#### If it's not working
-- You might need to cd to backend and run
-  ```
-  pip install requirements.txt
-  ```
-
 ### Reminder
-- The 'Latest News' on the main page will need an env file and store your own Finnhub API key for it to work
+- You will need to have your own Finnhub API to access news features in the main page
 - The 'Ask AI' feature will also need your own OpenAI API key for it to work.
 - This project was done in August 2024, so there might be a few errors and code that will need to be updated (I just haven't had time to look into this due to my internship)
 - If you want to see the full demo of the overall project, go to https://youtu.be/Z1rv9NDgNbk 
+
+- ENJOY AND THANK YOU FOR REVIEWING MY PROJECT! 😊
 
 <br/>
 <br/>

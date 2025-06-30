@@ -9,6 +9,13 @@
 - Track expenses
 - Get the latest news related to a specific stock
 
+### Problem this Fusion-Finance is solving
+- Fusion Finance simplifies personal finance by bringing everything into one unified platform
+  - ✅ Track stock prices and news without switching to finance apps like Yahoo Finance or Bloomberg.
+  - ✅ Get financial guidance instantly with an integrated AI assistant—no need to open ChatGPT separately.
+  - ✅ Create and manage budgets seamlessly, eliminating the need for Excel spreadsheets.
+- By combining these features into a single app, Fusion Finance removes the hassle of context switching, helps users stay organized, and empowers them to make smarter financial decisions, all in one place.
+
 ### Get Started
 - Clone the repo
 - Open the repo in an IDE

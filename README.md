@@ -1,6 +1,35 @@
-## Creating the Finance Fusion App
+# If you want to see the full demo 
+- Please go to https://youtu.be/Z1rv9NDgNbk 
+- To see my recent Hackathon project go to https://youtu.be/zU2zeMQDVNg
 
-### What is the finance fusion?
+# Get Started
+- Clone the repo
+```
+git clone https://github.com/Erljan/Finance-Fusion-2.git
+```
+- Open the repo in an IDE
+- Open terminal and cd to Finance-Fusion-2
+- Run
+```
+docker compose up
+```
+- **NOTE**: You will need to have a Finnhub and OpenAI API to access the AI and stocks news features. Otherwise, it will only have limited features.
+
+### When the app is working
+- Go to 'create an account'
+- Then log in with your credentials
+- Explore the features!
+- When searching for stocks you have to use the stock symbol (example: MSFT, AAPL, TSLA)
+
+
+### Reminder
+- You will need to have your own Finnhub API to access news features on the main page
+- The 'Ask AI' feature will also require your own OpenAI API key for it to function properly.
+- This project was done in August 2024, so there might be a few errors in the console or in the code, but it should work (I just haven't had time to look into this due to my internship)
+
+***ENJOY AND THANK YOU FOR REVIEWING MY PROJECT!*** 😊
+
+# What is the finance fusion?
 - It is a stock-tracker and budgeting app fused together
 - Allows the user to see current stock prices with real-time data
 - Allows the user to add a stock to their watchlist 
@@ -16,32 +45,6 @@
   - ✅ Create and manage budgets seamlessly, eliminating the need for Excel spreadsheets.
 - By combining these features into a single app, Fusion Finance removes the hassle of context switching, helps users stay organized, and empowers them to make smarter financial decisions, all in one place.
 
-### Get Started
-- Clone the repo
-- Open the repo in an IDE
-- Open terminal and cd to Finance-Fusion-2/backend
-- Create a .env file, copy the ".env.example" file, and paste it into your .env file
-- **NOTE**: You will need to have a Finnhub and OpenAI API to access the AI and stocks news features. Otherwise, it will only have limited features 
-- After creating the .env file, cd back to the Finance-Fusion-2 directory and
-- Run
-```
-docker compose up
-```
-
-#### When the app is working
-- Go to 'create an account'
-- Then log in with your credentials
-- Explore the features!
-
-### If you want to see the full demo (or if the app doesn't work on your device)
-- Please go to https://youtu.be/Z1rv9NDgNbk 
-
-### Reminder
-- You will need to have your own Finnhub API to access news features on the main page
-- The 'Ask AI' feature will also require your own OpenAI API key for it to function properly.
-- This project was done in August 2024, so there might be a few errors in the console or in the code, but it should work (I just haven't had time to look into this due to my internship)
-
-***ENJOY AND THANK YOU FOR REVIEWING MY PROJECT!*** 😊
 
 <br/>
 <br/>

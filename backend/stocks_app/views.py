@@ -51,13 +51,11 @@ class GetStock(APIView):
         for time, value in zip(times, values):
             formatted_time = time.strftime('%H:%M')
             try:
-                print("Value: =====>", value)
                 numeric_value = round(float(value), 2)
             except (TypeError, ValueError):
                 numeric_value = None  
             data.append({"time": formatted_time, "value": numeric_value})
 
-        print("========>",data)
 
 
         news_sym = yf.Ticker(symbol)

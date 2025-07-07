@@ -13,6 +13,7 @@ git clone https://github.com/Erljan/Finance-Fusion-2.git
 ```
 docker compose up
 ```
+- Then go to http://localhost:5173/
 - **NOTE**: You will need to have a Finnhub and OpenAI API to access the AI and stocks news features. Otherwise, it will only have limited features.
 
 ### When the app is working
